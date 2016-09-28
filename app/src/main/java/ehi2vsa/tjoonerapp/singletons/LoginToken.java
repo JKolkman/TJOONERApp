@@ -19,7 +19,8 @@ public class LoginToken {
     }
 
     public void setCode(String token){
-        this.token = token;
+        this.token = token.replace("\"", "");
+
     }
 
     public String getToken(){
