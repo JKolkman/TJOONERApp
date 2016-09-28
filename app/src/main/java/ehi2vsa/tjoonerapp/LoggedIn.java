@@ -18,6 +18,8 @@ import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
 import ehi2vsa.tjoonerapp.fragments.MainMenuFragment;
 import ehi2vsa.tjoonerapp.fragments.VideoFragment;
+import ehi2vsa.tjoonerapp.singletons.LoginToken;
+import ehi2vsa.tjoonerapp.singletons.UserData;
 
 public class LoggedIn extends FragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +27,8 @@ public class LoggedIn extends FragmentActivity
     CameraFragment camera;
     VideoFragment video;
     GalleryFragment gallery;
+    UserData user = UserData.getInstance();
+    LoginToken token = LoginToken.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,27 +116,12 @@ public class LoggedIn extends FragmentActivity
             case R.id.nav_gallery:
                 gallery.setArguments(getIntent().getExtras());
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, gallery).commit();
+                break;
+            case R.id.nav_logout:
+                user.logout();
+                token.logout();
+                finish();
         }
-
-//        if (id == R.id.nav_menu) {
-//            menu.setArguments(getIntent().getExtras());
-//            getFragmentManager().beginTransaction().replace(R.id.fragment_container, menu).commit();
-//        } else if (id == R.id.nav_camera) {
-//
-//            // Handle the camera action
-//        } else if (id == R.id.nav_video) {
-//
-//        } else if (id == R.id.nav_gallery) {
-//
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//            //} else if (id == R.id.nav_share) {
-//
-//            //} else if (id == R.id.nav_send) {
-
-        //}
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
