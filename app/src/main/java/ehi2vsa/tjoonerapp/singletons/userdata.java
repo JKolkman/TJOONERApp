@@ -1,5 +1,7 @@
 package ehi2vsa.tjoonerapp.singletons;
 
+import android.os.AsyncTask;
+
 /**
  * Created by joost on 28/09/2016.
  */
@@ -21,5 +23,19 @@ public class UserData {
 
     public void logout(){
         instance = null;
+    }
+
+
+    private class getUserData extends AsyncTask<String, String, String[]>{
+        @Override
+        protected String[] doInBackground(String... strings) {
+
+
+
+
+
+
+            return new String[0];
+        }
     }
 }
