@@ -14,10 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.MainMenuFragment;
 
 public class LoggedIn extends FragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    MainMenuFragment menu;
+    CameraFragment camera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +33,10 @@ public class LoggedIn extends FragmentActivity
                 return;
             }
 
-            MainMenuFragment mmFragment = new MainMenuFragment();
-            mmFragment.setArguments(getIntent().getExtras());
-            getFragmentManager().beginTransaction().add(R.id.fragment_container, mmFragment).commit();
+            menu = new MainMenuFragment();
+            menu.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction().add(R.id.fragment_container, menu).commit();
         }
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -84,8 +86,14 @@ public class LoggedIn extends FragmentActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_menu) {
+            menu = new MainMenuFragment();
+            menu.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, menu).commit();
+        } else if (id == R.id.nav_camera) {
+            camera = new CameraFragment();
+            camera.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
