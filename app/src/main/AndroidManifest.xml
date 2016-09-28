@@ -20,7 +20,8 @@
         <activity
             android:name=".LoggedIn"
             android:label="@string/title_activity_logged_in"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

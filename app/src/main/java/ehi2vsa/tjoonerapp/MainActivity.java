@@ -53,10 +53,9 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     String token = task.get();
                     System.out.println(token);
-                    if (!token.contains("Username") && !token.contains("000000000000")) {
+                    if (!token.contains("Username") && !token.contains("000000000000") && !token.equals("Error")) {
                         code.setCode(token);
                         startActivity(intent);
-
                     } else {
                         Toast.makeText(MainActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
                     }
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException b) {
                 System.out.println(b.getMessage());
             }
-            return null;
+            return "Error";
         }
     }
 }
