@@ -18,12 +18,14 @@ import android.widget.Toast;
 
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
+import ehi2vsa.tjoonerapp.fragments.MediaFragment;
 import ehi2vsa.tjoonerapp.fragments.VideoFragment;
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
 
 public class LoggedIn extends FragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     CameraFragment camera;
+    MediaFragment media;
     VideoFragment video;
     GalleryFragment gallery;
     LoginToken token = LoginToken.getInstance();
@@ -34,10 +36,11 @@ public class LoggedIn extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Gallery");
+        toolbar.setTitle("Media");
         camera = new CameraFragment();
         video = new VideoFragment();
         gallery = new GalleryFragment();
+        media = new MediaFragment();
 
         if (findViewById(R.id.fragment_container) != null) {
             if (savedInstanceState != null) {
@@ -45,8 +48,8 @@ public class LoggedIn extends FragmentActivity
             }
 
 
-            gallery.setArguments(getIntent().getExtras());
-            getFragmentManager().beginTransaction().add(R.id.fragment_container, gallery).commit();
+            media.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction().add(R.id.fragment_container, media).commit();
         }
 
 
@@ -100,6 +103,11 @@ public class LoggedIn extends FragmentActivity
 
         try {
             switch (id) {
+                case R.id.nav_media:
+                    toolbar.setTitle("Media");
+                    media.setArguments(getIntent().getExtras());
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, media).commit();
+                    break;
                 case R.id.nav_gallery:
                     toolbar.setTitle("Gallery");
                     gallery.setArguments(getIntent().getExtras());
