@@ -18,27 +18,23 @@ import android.widget.Toast;
 
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
-import ehi2vsa.tjoonerapp.fragments.MainMenuFragment;
 import ehi2vsa.tjoonerapp.fragments.VideoFragment;
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
-import ehi2vsa.tjoonerapp.singletons.UserData;
 
 public class LoggedIn extends FragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    MainMenuFragment menu;
     CameraFragment camera;
     VideoFragment video;
     GalleryFragment gallery;
-    UserData user = UserData.getInstance();
     LoginToken token = LoginToken.getInstance();
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(user.getUsername());
-        menu = new MainMenuFragment();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Gallery");
         camera = new CameraFragment();
         video = new VideoFragment();
         gallery = new GalleryFragment();
@@ -48,9 +44,9 @@ public class LoggedIn extends FragmentActivity
                 return;
             }
 
-            menu = new MainMenuFragment();
-            menu.setArguments(getIntent().getExtras());
-            getFragmentManager().beginTransaction().add(R.id.fragment_container, menu).commit();
+
+            gallery.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction().add(R.id.fragment_container, gallery).commit();
         }
 
 
@@ -104,24 +100,22 @@ public class LoggedIn extends FragmentActivity
 
         try {
             switch (id) {
-                case R.id.nav_menu:
-                    menu.setArguments(getIntent().getExtras());
-                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, menu).commit();
+                case R.id.nav_gallery:
+                    toolbar.setTitle("Gallery");
+                    gallery.setArguments(getIntent().getExtras());
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, gallery).commit();
                     break;
                 case R.id.nav_camera:
+                    toolbar.setTitle("Camera");
                     camera.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
                     break;
                 case R.id.nav_video:
+                    toolbar.setTitle("Video");
                     video.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, video).commit();
                     break;
-                case R.id.nav_gallery:
-                    gallery.setArguments(getIntent().getExtras());
-                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, gallery).commit();
-                    break;
                 case R.id.nav_logout:
-                    user.logout();
                     token.logout();
                     finish();
                     break;
