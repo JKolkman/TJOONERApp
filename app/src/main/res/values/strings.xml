@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">TJOONERApp</string>
+    <string name="login">Login</string>
+    <string name="main">Main Menu</string>
+    <string name="foto">Foto Maken</string>
+    <string name="video">Video Opnemen</string>
+    <string name="opencamera">Open Camera</string>
+    <string name="title_activity_logged_in">LoggedIn</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
 </resources>

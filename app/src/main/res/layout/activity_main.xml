@@ -3,14 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ehi2vsa.tjoonerapp.MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
+        android:layout_height="75sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="75sp"
+        android:background="@drawable/tjoonerwhite" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_below="@+id/imageView">
+
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:hint="Username"
+            android:textColorHint="@color/textWhite"
+            android:textColor="@color/textWhite"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="75dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_alignParentEnd="true"
+            android:hint="Password"
+            android:textColorHint="@color/textWhite"
+            android:textColor="@color/textWhite"/>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            android:layout_alignEnd="@+id/et_password"
+            android:layout_alignParentBottom="true"
+            android:background="@color/button"
+            android:textColor="@color/textWhite"
+            android:text="@string/login" />
+    </RelativeLayout>
 </RelativeLayout>
