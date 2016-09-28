@@ -15,12 +15,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
+import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
 import ehi2vsa.tjoonerapp.fragments.MainMenuFragment;
+import ehi2vsa.tjoonerapp.fragments.VideoFragment;
 
 public class LoggedIn extends FragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     MainMenuFragment menu;
     CameraFragment camera;
+    VideoFragment video;
+    GalleryFragment gallery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,11 @@ public class LoggedIn extends FragmentActivity
         setContentView(R.layout.activity_logged_in);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
+        menu = new MainMenuFragment();
+        camera = new CameraFragment();
+        video = new VideoFragment();
+        gallery = new GalleryFragment();
+
         if (findViewById(R.id.fragment_container) != null) {
             if (savedInstanceState != null) {
                 return;
@@ -86,26 +95,43 @@ public class LoggedIn extends FragmentActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_menu) {
-            menu = new MainMenuFragment();
-            menu.setArguments(getIntent().getExtras());
-            getFragmentManager().beginTransaction().replace(R.id.fragment_container, menu).commit();
-        } else if (id == R.id.nav_camera) {
-            camera = new CameraFragment();
-            camera.setArguments(getIntent().getExtras());
-            getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_video) {
-
-        } else if (id == R.id.nav_manage) {
-
-            //} else if (id == R.id.nav_share) {
-
-            //} else if (id == R.id.nav_send) {
-
+        switch(id){
+            case R.id.nav_menu:
+                menu.setArguments(getIntent().getExtras());
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, menu).commit();
+                break;
+            case R.id.nav_camera:
+                camera.setArguments(getIntent().getExtras());
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
+                break;
+            case R.id.nav_video:
+                video.setArguments(getIntent().getExtras());
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, video).commit();
+                break;
+            case R.id.nav_gallery:
+                gallery.setArguments(getIntent().getExtras());
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, gallery).commit();
         }
+
+//        if (id == R.id.nav_menu) {
+//            menu.setArguments(getIntent().getExtras());
+//            getFragmentManager().beginTransaction().replace(R.id.fragment_container, menu).commit();
+//        } else if (id == R.id.nav_camera) {
+//
+//            // Handle the camera action
+//        } else if (id == R.id.nav_video) {
+//
+//        } else if (id == R.id.nav_gallery) {
+//
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//            //} else if (id == R.id.nav_share) {
+//
+//            //} else if (id == R.id.nav_send) {
+
+        //}
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
