@@ -7,6 +7,7 @@ import android.os.AsyncTask;
  */
 public class UserData {
     private static UserData instance;
+    private String username;
     private UserData userdata;
 
 
@@ -25,17 +26,11 @@ public class UserData {
         instance = null;
     }
 
+    public void setUsername(String username){
+        this.username = username;
+    }
 
-    private class getUserData extends AsyncTask<String, String, String[]>{
-        @Override
-        protected String[] doInBackground(String... strings) {
-
-
-
-
-
-
-            return new String[0];
-        }
+    public String getUsername() {
+        return username;
     }
 }

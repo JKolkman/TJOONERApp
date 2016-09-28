@@ -11,8 +11,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
@@ -35,7 +37,7 @@ public class LoggedIn extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
+        toolbar.setTitle(user.getUsername());
         menu = new MainMenuFragment();
         camera = new CameraFragment();
         video = new VideoFragment();
@@ -100,27 +102,33 @@ public class LoggedIn extends FragmentActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch(id){
-            case R.id.nav_menu:
-                menu.setArguments(getIntent().getExtras());
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, menu).commit();
-                break;
-            case R.id.nav_camera:
-                camera.setArguments(getIntent().getExtras());
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
-                break;
-            case R.id.nav_video:
-                video.setArguments(getIntent().getExtras());
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, video).commit();
-                break;
-            case R.id.nav_gallery:
-                gallery.setArguments(getIntent().getExtras());
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, gallery).commit();
-                break;
-            case R.id.nav_logout:
-                user.logout();
-                token.logout();
-                finish();
+        try {
+            switch (id) {
+                case R.id.nav_menu:
+                    menu.setArguments(getIntent().getExtras());
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, menu).commit();
+                    break;
+                case R.id.nav_camera:
+                    camera.setArguments(getIntent().getExtras());
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
+                    break;
+                case R.id.nav_video:
+                    video.setArguments(getIntent().getExtras());
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, video).commit();
+                    break;
+                case R.id.nav_gallery:
+                    gallery.setArguments(getIntent().getExtras());
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, gallery).commit();
+                    break;
+                case R.id.nav_logout:
+                    user.logout();
+                    token.logout();
+                    finish();
+                    break;
+            }
+        }catch (Exception e){
+            Log.d("Switch", e.getMessage());
+            Toast.makeText(LoggedIn.this, "You are already in this menu", Toast.LENGTH_SHORT).show();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -21,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
+import ehi2vsa.tjoonerapp.singletons.UserData;
 
 public class MainActivity extends AppCompatActivity {
     String loginToken;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     HttpURLConnection urlConnection;
     EditText usernameET, passwordET;
     LoginToken code = LoginToken.getInstance();
+    UserData user = UserData.getInstance();
     Button button, loginhack;
     Intent intent;
 
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     String token = task.get();
                     System.out.println(token);
                     if (!token.contains("Username") && !token.contains("000000000000") && !token.equals("Error")) {
+                        user.setUsername(username);
                         code.setCode(token);
                         startActivity(intent);
                     } else {
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     String token = task.get();
                     System.out.println(token);
                     if (!token.contains("Username") && !token.contains("000000000000") && !token.equals("Error")) {
+                        user.setUsername(username);
                         code.setCode(token);
                         startActivity(intent);
                     } else {
