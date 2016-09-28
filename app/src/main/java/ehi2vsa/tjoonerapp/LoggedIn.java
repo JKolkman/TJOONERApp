@@ -1,10 +1,11 @@
 package ehi2vsa.tjoonerapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+
+
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,7 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class LoggedIn extends AppCompatActivity
+import ehi2vsa.tjoonerapp.fragments.MainMenuFragment;
+
+public class LoggedIn extends FragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -22,7 +25,17 @@ public class LoggedIn extends AppCompatActivity
         setContentView(R.layout.activity_logged_in);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
-        setSupportActionBar(toolbar);
+        if (findViewById(R.id.fragment_container) != null) {
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            MainMenuFragment mmFragment = new MainMenuFragment();
+            mmFragment.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction().add(R.id.fragment_container, mmFragment).commit();
+        }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
