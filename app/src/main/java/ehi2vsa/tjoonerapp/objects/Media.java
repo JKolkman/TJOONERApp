@@ -1,4 +1,6 @@
-package ehi2vsa.tjoonerapp;
+package ehi2vsa.tjoonerapp.objects;
+
+import ehi2vsa.tjoonerapp.MediaCategory;
 
 public class Media {
     private String id, previewId, resourceId;
@@ -24,4 +26,33 @@ public class Media {
     public String getId() {
         return id;
     }
+
+    public String getPreviewId() {
+        return previewId;
+    }
+
+    public String getResourceId() {
+        return resourceId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public String getPreview() {
+        return preview;
+    }
+
+    public MediaCategory[] getCategories() {
+        return categories;
+    }
 }
+
