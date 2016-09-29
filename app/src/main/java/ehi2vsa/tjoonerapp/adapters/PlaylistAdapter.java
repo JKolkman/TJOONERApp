@@ -1,5 +1,6 @@
 package ehi2vsa.tjoonerapp.adapters;
 
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ public class PlaylistAdapter extends ArrayAdapter<Playlist> {
 
     public PlaylistAdapter(Context context, Playlist[] objects) {
         super(context, 0);
+        System.out.println("" + objects.length);
         this.objects = objects;
     }
 
@@ -41,7 +43,7 @@ public class PlaylistAdapter extends ArrayAdapter<Playlist> {
             Log.d("Adapter", e.getMessage());
         }
         playlist_name.setText(objects[position].getTitle());
-        playlist_amount.setText(objects[position].getMedia().length + "Images");
+        playlist_amount.setText(objects[position].getMedia().length + " Images");
 
         return convertView;
     }
