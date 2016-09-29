@@ -19,6 +19,7 @@ public class GalleryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
 
         GridView gridview = (GridView) view.findViewById(R.id.gridview);
+
         gridview.setAdapter(new CustomImageAdapter(this.getActivity()));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

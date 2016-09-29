@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -27,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
     LoginToken code = LoginToken.getInstance();
     Button button, loginhack;
     Intent intent;
+    ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         button = (Button) findViewById(R.id.button);
         loginhack = (Button) findViewById(R.id.login_hack);
         usernameET = (EditText) findViewById(R.id.et_username);
