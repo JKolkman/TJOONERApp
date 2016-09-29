@@ -9,9 +9,6 @@ import android.widget.ImageView;
 
 import ehi2vsa.tjoonerapp.R;
 
-/**
- * Created by Thijs on 28-9-2016.
- */
 public class CustomImageAdapter extends BaseAdapter {
     private Context mContext;
 

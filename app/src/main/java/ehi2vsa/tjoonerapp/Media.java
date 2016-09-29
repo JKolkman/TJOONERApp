@@ -1,8 +1,5 @@
 package ehi2vsa.tjoonerapp;
 
-/**
- * Created by joost on 28/09/2016.
- */
 public class Media {
     private String id, previewId, resourceId;
     private String description,author, mediaType, preview;

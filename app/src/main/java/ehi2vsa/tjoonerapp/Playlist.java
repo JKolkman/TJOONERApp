@@ -17,4 +17,12 @@ public class Playlist {
     public Media[] getMedia() {
         return media;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

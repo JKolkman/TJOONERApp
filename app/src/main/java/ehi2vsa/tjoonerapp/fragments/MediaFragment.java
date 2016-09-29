@@ -9,28 +9,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import ehi2vsa.tjoonerapp.LoggedIn;
 import ehi2vsa.tjoonerapp.Media;
 import ehi2vsa.tjoonerapp.Playlist;
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
 
-/**
- * Created by joost on 28/09/2016.
- */
 public class MediaFragment extends Fragment {
     Button button;
 
@@ -50,11 +44,11 @@ public class MediaFragment extends Fragment {
                     parseString parse = new parseString(result);
                     parse.execute();
                     Playlist[] pArray = parse.get();
-                    chunkToImage toImage = new chunkToImage(pArray[0].getMedia()[0].getId());
-                    toImage.execute();
+
+                    Toast.makeText(getActivity(), "Retrieved Playlists", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
-
+                    Log.d("OnclickListener", e.getMessage());
                 }
             }
         });
@@ -62,7 +56,6 @@ public class MediaFragment extends Fragment {
 
         return view;
     }
-
 
     private class getMedia extends AsyncTask<String, String, String> {
         @Override
@@ -80,7 +73,7 @@ public class MediaFragment extends Fragment {
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(connection.getInputStream()));
                 String input;
-                StringBuffer response = new StringBuffer();
+                StringBuilder response = new StringBuilder();
 
                 while ((input = reader.readLine()) != null) {
                     response.append(input);
@@ -125,6 +118,7 @@ public class MediaFragment extends Fragment {
                         preview = jObjectMedia.getString("Preview");
                         Media media = new Media(id2, previewId, resourceId, description, author, mediaType, preview);
                         arrayMedia[i] = media;
+                        Log.d("Media", media.toString());
                     }
                     Playlist playlist = new Playlist(id, title, arrayMedia);
                     arrayPlaylist[j] = playlist;
@@ -135,44 +129,6 @@ public class MediaFragment extends Fragment {
             }
             return null;
         }
-    }
-
-    private class chunkToImage extends AsyncTask<String, String, String> {
-        String string;
-
-        public chunkToImage(String string) {
-            this.string = string;
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            try {
-                String token = LoginToken.getInstance().getToken();
-
-                URL url = new URL(("http://setup.tjooner.tv/JCC/Saxion/TJOONER/REST/api/ChunkedMedia?mediaId=" + string + "&offset=" + 100 + "&maxPixelsPerSide=" + 0 + "&userToken=" + token));
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-
-                int responseCode = connection.getResponseCode();
-                System.out.println("Response Code: " + responseCode);
-
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(connection.getInputStream()));
-                String input;
-                StringBuffer response = new StringBuffer();
-
-                while ((input = reader.readLine()) != null) {
-                    response.append(input);
-                }
-                reader.close();
-                Log.d("B64", response.toString());
-                return response.toString();
-            } catch (Exception e) {
-                Log.d("Base64", e.getMessage());
-            }
-            return null;
-        }
-
     }
 
 }

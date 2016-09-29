@@ -12,9 +12,6 @@ import android.widget.GridView;
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.adapters.CustomImageAdapter;
 
-/**
- * Created by joost on 28/09/2016.
- */
 public class GalleryFragment extends Fragment {
     @Nullable
     @Override

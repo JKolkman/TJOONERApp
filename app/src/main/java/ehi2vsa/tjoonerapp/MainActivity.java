@@ -2,8 +2,8 @@ package ehi2vsa.tjoonerapp;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,12 +17,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
 public class MainActivity extends AppCompatActivity {
-    String loginToken;
     URL url;
     HttpURLConnection urlConnection;
     EditText usernameET, passwordET;
@@ -136,10 +134,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 System.out.println(result.toString());
                 return result.toString();
-            } catch (MalformedURLException a) {
+            } catch (IOException a) {
                 System.out.println(a.getMessage());
-            } catch (IOException b) {
-                System.out.println(b.getMessage());
             }
             return "Error";
         }

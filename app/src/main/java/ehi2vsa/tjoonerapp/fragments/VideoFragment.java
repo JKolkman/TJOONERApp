@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 
 import ehi2vsa.tjoonerapp.R;
 
-/**
- * Created by joost on 28/09/2016.
- */
 public class VideoFragment extends Fragment {
     @Nullable
     @Override
