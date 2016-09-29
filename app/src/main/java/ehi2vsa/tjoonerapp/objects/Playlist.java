@@ -1,4 +1,4 @@
-package ehi2vsa.tjoonerapp;
+package ehi2vsa.tjoonerapp.objects;
 
 /**
  * Created by joost on 28/09/2016.
@@ -24,5 +24,9 @@ public class Playlist {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getThumbnail(){
+        return media[0].getPreviewId();
     }
 }
