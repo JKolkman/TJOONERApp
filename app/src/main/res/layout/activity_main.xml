@@ -11,12 +11,14 @@
     tools:context="ehi2vsa.tjoonerapp.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logo_Tjooner"
         android:layout_width="wrap_content"
         android:layout_height="75sp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="75sp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         android:background="@drawable/tjoonerwhite" />
 
     <RelativeLayout
