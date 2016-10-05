@@ -1,80 +1,23 @@
-package ehi2vsa.tjoonerapp.adapters;
+package ehi2vsa.tjoonerapp.async;
 
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.objects.ImageInfo;
 
-public class CustomImageAdapter extends BaseAdapter {
-    private Context mContext;
-    private ArrayList<ImageInfo> images;
-
-    public CustomImageAdapter(Activity activity,ArrayList<ImageInfo> images) {
-        mContext = activity;
-
-        this.images = images;
-    }
-
-
-    public int getCount() {
-
-        return images.size();
-//        return mThumbIds.length;
-    }
-
-    public Object getItem(int position) {
-        return null;
-    }
-
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    static class ViewHolder {
-        public ViewHolder() {
-        }
-
-        TextView tvPath;
-        ImageView ivImage;
-
-    }
-
-    // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.custom_gridview_component, null);
-            holder = new ViewHolder();
-            holder.tvPath = (TextView) convertView.findViewById(R.id.gridview_textview);
-            holder.ivImage = (ImageView) convertView.findViewById(R.id.gridview_imageview);
-            convertView.setTag(holder);
-
-
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-        ImageInfo imageInfo = images.get(position);
-        holder.ivImage.setImageBitmap(imageInfo.getThumbnail());
-        holder.tvPath.setText(imageInfo.getLarge_image_path());
-        return convertView;
-    }
-
+/**
+ * Created by Thijs on 5-10-2016.
+ */
+public class GetAllLocalImages extends AsyncTask<Activity,String,ArrayList<ImageInfo>>{
+    private ArrayList<ImageInfo> imageInfos;
 
     private ArrayList<ImageInfo> getAllShownImagesPath(Activity activity) {
         Uri uri;
@@ -98,6 +41,7 @@ public class CustomImageAdapter extends BaseAdapter {
         }
         Log.d("size", "getAllShownImagesPath: size " + listOfAllImages.size());
         cursor.close();
+
         return listOfAllImages;
     }
 
@@ -114,4 +58,13 @@ public class CustomImageAdapter extends BaseAdapter {
         return null;
 
     }
+
+    @Override
+    protected ArrayList<ImageInfo> doInBackground(Activity... activities) {
+        imageInfos = getAllShownImagesPath(activities[0]);
+        return imageInfos;
+    }
+
+
 }
+
