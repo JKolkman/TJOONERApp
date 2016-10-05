@@ -4,19 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_media"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/playlisticon24"
             android:title="@string/media"/>
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/picturesicon24"
             android:title="@string/camera" />
         <item
             android:id="@+id/nav_video"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/moviesicon24"
             android:title="@string/video"/>
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/galleryicon24"
             android:title="@string/gallery" />
         <item
             android:id="@+id/nav_manage"
@@ -24,7 +24,7 @@
             android:title="@string/settings" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/tjoonerlogo"
+            android:icon="@drawable/logouticon24"
             android:title="@string/logout"/>
     </group>
 </menu>
