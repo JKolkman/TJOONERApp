@@ -1,11 +1,12 @@
 package ehi2vsa.tjoonerapp.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by joost on 28/09/2016.
  */
-public class Playlist {
+public class Playlist implements Serializable{
     private String id;
     private String title;
     private ArrayList<Media> media;
@@ -28,7 +29,7 @@ public class Playlist {
         return title;
     }
 
-    public String getThumbnail(){
+    public String getThumbnail() {
         if (media.size() > 0) {
             return media.get(0).getPreviewId();
         }

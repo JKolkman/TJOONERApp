@@ -1,6 +1,5 @@
 package ehi2vsa.tjoonerapp.adapters;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -9,26 +8,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.async.PreviewIdToImage;
-import ehi2vsa.tjoonerapp.objects.Playlist;
+import ehi2vsa.tjoonerapp.objects.Media;
 
-public class PlaylistAdapter extends BaseAdapter {
-    ArrayList<Playlist> items;
+/**
+ * Created by joost on 05/10/2016.
+ */
+public class SinglePlaylistAdapter extends BaseAdapter {
+    ArrayList<Media> items;
     private Activity context;
-    static class ViewHolder{
-        public ViewHolder(){
+
+    static class ViewHolder {
+        public ViewHolder() {
         }
+
         ImageView preview;
-        TextView playlist_name, playlist_amount;
     }
 
-    public PlaylistAdapter(ArrayList<Playlist> items, Activity activity) {
+    public SinglePlaylistAdapter(ArrayList<Media> items, Activity activity) {
         this.items = items;
         this.context = activity;
     }
@@ -55,30 +57,21 @@ public class PlaylistAdapter extends BaseAdapter {
         if (convertView == null) {
             Log.d("Convertview inflater", "Convertview");
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.playlist_object, null);
+            convertView = inflater.inflate(R.layout.playlist_detail_object, null);
             holder = new ViewHolder();
-            holder.playlist_name = (TextView) convertView.findViewById(R.id.tv_playlist_name);
-            holder.playlist_amount = (TextView) convertView.findViewById(R.id.tv_image_amount);
-            holder.preview = (ImageView) convertView.findViewById(R.id.iv_preview);
+            holder.preview = (ImageView) convertView.findViewById(R.id.iv_playlist_media_object);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Playlist list = items.get(position);
-        if (list.getThumbnail() != null) {
-            PreviewIdToImage image = new PreviewIdToImage(list.getThumbnail());
-            image.execute();
-            try {
-                holder.preview.setImageBitmap(image.get());
-            } catch (InterruptedException | ExecutionException e) {
-                Log.d("playlistadapter", e.getMessage());
-            }
+        PreviewIdToImage image = new PreviewIdToImage(items.get(position).getPreviewId());
+        image.execute();
+        try {
+            holder.preview.setImageBitmap(image.get());
+        } catch (InterruptedException | ExecutionException e) {
+            Log.d("playlistadapter", e.getMessage());
         }
-
-        holder.playlist_name.setText(list.getTitle());
-        holder.playlist_amount.setText(list.getMedia().size() + " Images");
-        Log.d("Position", "getView: position" + position);
         return convertView;
     }
 }

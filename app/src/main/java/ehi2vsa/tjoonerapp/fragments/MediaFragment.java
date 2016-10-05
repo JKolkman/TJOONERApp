@@ -1,17 +1,20 @@
 package ehi2vsa.tjoonerapp.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import ehi2vsa.tjoonerapp.PlaylistInfoActivity;
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.adapters.PlaylistAdapter;
 import ehi2vsa.tjoonerapp.async.GetPlaylist;
@@ -22,6 +25,7 @@ public class MediaFragment extends Fragment {
     ArrayList<Playlist> playlistArray;
     private ListView listviewPlaylist;
     private PlaylistAdapter adapter;
+    Intent intent;
 
 
     @Nullable
@@ -50,6 +54,14 @@ public class MediaFragment extends Fragment {
         adapter = new PlaylistAdapter(playlistArray, getActivity());
         listviewPlaylist.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        intent = new Intent(getActivity(), PlaylistInfoActivity.class);
+        listviewPlaylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                intent.putExtra("Arraylist", playlistArray.get(i));
+                startActivity(intent);
+            }
+        });
         return view;
     }
 }
