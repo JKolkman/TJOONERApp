@@ -1,8 +1,10 @@
 package ehi2vsa.tjoonerapp.objects;
 
+import java.io.Serializable;
+
 import ehi2vsa.tjoonerapp.MediaCategory;
 
-public class Media {
+public class Media implements Serializable{
     private String id, previewId, resourceId;
     private String description,author, mediaType, preview;
     private MediaCategory[] categories;
