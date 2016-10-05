@@ -35,6 +35,7 @@ public class GetPlaylist extends AsyncTask<String, String, String> {
                 response.append(input);
             }
             reader.close();
+            //System.out.println(response.toString());
             return response.toString();
         } catch (Exception e) {
             Log.d("EndOfMediaFragment", e.getMessage());
