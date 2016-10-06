@@ -31,5 +31,8 @@ public class ImagesOnPhone {
     public ImageInfo getImageInfo(int position){
         return imageInfos.get(position);
     }
+    public int getImageInfoSize(){
+        return imageInfos.size();
+    }
 
 }

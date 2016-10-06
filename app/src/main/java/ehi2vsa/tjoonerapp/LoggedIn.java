@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import ehi2vsa.tjoonerapp.async.GetAllLocalImagesAsync;
+import ehi2vsa.tjoonerapp.async.GlobalAsync;
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
 import ehi2vsa.tjoonerapp.fragments.MediaFragment;
@@ -27,7 +27,7 @@ public class LoggedIn extends FragmentActivity
     GalleryFragment gallery;
     LoginToken token = LoginToken.getInstance();
     Toolbar toolbar;
-    GetAllLocalImagesAsync getAllLocalImagesAsync;
+    GlobalAsync globalAsync;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,10 @@ public class LoggedIn extends FragmentActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getAllLocalImagesAsync=new GetAllLocalImagesAsync();
-        getAllLocalImagesAsync.execute(this);
+        globalAsync = new GlobalAsync();
+        globalAsync.execute(this);
+
+
     }
 
     @Override
