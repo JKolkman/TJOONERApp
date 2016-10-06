@@ -5,7 +5,7 @@ package ehi2vsa.tjoonerapp.singletons;
  */
 public class LoginToken {
     private String token;
-    public static LoginToken instance;
+    private static LoginToken instance;
     private LoginToken loginCode;
 
     public static LoginToken getInstance(){

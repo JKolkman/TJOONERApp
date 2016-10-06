@@ -12,32 +12,38 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import ehi2vsa.tjoonerapp.objects.ImageInfo;
+import ehi2vsa.tjoonerapp.singletons.ImagesOnPhone;
 
 /**
  * Created by Thijs on 5-10-2016.
  */
-public class GetAllLocalImages extends AsyncTask<Activity,String,ArrayList<ImageInfo>>{
-    private ArrayList<ImageInfo> imageInfos;
-
+public class GetAllLocalImagesAsync extends AsyncTask<Activity, Integer, ArrayList<ImageInfo>> {
     private ArrayList<ImageInfo> getAllShownImagesPath(Activity activity) {
+        ImagesOnPhone imagesOnPhone = ImagesOnPhone.getInstance();
         Uri uri;
         Cursor cursor;
-        int column_index_data, column_index_id;
+        int column_index_data, column_index_title;
         ArrayList<ImageInfo> listOfAllImages = new ArrayList<>();
         String absolutePathOfImage = null;
         String titleOfImage = null;
+        Bitmap thumbnail=null;
         uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
         String[] projection = {MediaStore.MediaColumns.DATA,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME, MediaStore.Images.Media.TITLE};
 
         cursor = activity.getContentResolver().query(uri, projection, null,
                 null, null);
 
         column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+        column_index_title = cursor.getColumnIndex(MediaStore.MediaColumns.TITLE);
         while (cursor.moveToNext()) {
+            Log.d("ÏmagesPath", "getAllShownImagesPath: adding object");
             absolutePathOfImage = cursor.getString(column_index_data);
-            listOfAllImages.add(new ImageInfo(absolutePathOfImage,getThumbnail(activity, absolutePathOfImage)));
+            titleOfImage = cursor.getString(column_index_title);
+            thumbnail = getThumbnail(activity,absolutePathOfImage);
+            listOfAllImages.add(new ImageInfo(titleOfImage, absolutePathOfImage, thumbnail));
+            imagesOnPhone.addImageInfo(new ImageInfo(titleOfImage, absolutePathOfImage, thumbnail));
         }
         Log.d("size", "getAllShownImagesPath: size " + listOfAllImages.size());
         cursor.close();
@@ -61,10 +67,9 @@ public class GetAllLocalImages extends AsyncTask<Activity,String,ArrayList<Image
 
     @Override
     protected ArrayList<ImageInfo> doInBackground(Activity... activities) {
-        imageInfos = getAllShownImagesPath(activities[0]);
-        return imageInfos;
+        return getAllShownImagesPath(activities[0]);
     }
 
-
 }
+
 
