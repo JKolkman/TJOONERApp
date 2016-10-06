@@ -30,6 +30,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".MediaInfoActivity" />
         <activity android:name=".PlaylistInfoActivity" />
+        <activity android:name=".CategoryInfoActivity"/>
 
     </application>
 
