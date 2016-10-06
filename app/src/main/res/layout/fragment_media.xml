@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lv_playlist"
-        android:layout_alignParentTop="true"
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gv_media_fragment"
+        android:numColumns="2"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-
 </RelativeLayout>
