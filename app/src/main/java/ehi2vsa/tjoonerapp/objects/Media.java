@@ -2,12 +2,9 @@ package ehi2vsa.tjoonerapp.objects;
 
 import java.io.Serializable;
 
-import ehi2vsa.tjoonerapp.MediaCategory;
-
 public class Media implements Serializable{
     private String id, previewId, resourceId;
     private String description,author, mediaType, preview;
-    private MediaCategory[] categories;
 
     public Media(String id, String previewId, String resourceId, String description, String author, String mediaType, String preview) {
         this.id = id;
@@ -17,7 +14,6 @@ public class Media implements Serializable{
         this.author = author;
         this.mediaType = mediaType;
         this.preview = preview;
-        //this.categories = categories;
     }
 
     @Override
@@ -53,8 +49,5 @@ public class Media implements Serializable{
         return preview;
     }
 
-    public MediaCategory[] getCategories() {
-        return categories;
-    }
 }
 
