@@ -28,6 +28,7 @@ public class LoggedIn extends FragmentActivity
     LoginToken token = LoginToken.getInstance();
     Toolbar toolbar;
     GetAllLocalImagesAsync getAllLocalImagesAsync;
+    boolean firsttimeloadinglocal = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +60,6 @@ public class LoggedIn extends FragmentActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        getAllLocalImagesAsync=new GetAllLocalImagesAsync();
-        getAllLocalImagesAsync.execute(this);
     }
 
     @Override
@@ -109,6 +107,11 @@ public class LoggedIn extends FragmentActivity
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, media).commit();
                     break;
                 case R.id.nav_gallery:
+                    if (firsttimeloadinglocal){
+                        getAllLocalImagesAsync=new GetAllLocalImagesAsync();
+                        getAllLocalImagesAsync.execute(this);
+                        firsttimeloadinglocal = false;
+                    }
                     toolbar.setTitle(R.string.gallery);
                     gallery.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, gallery).commit();

@@ -21,7 +21,7 @@ public class GalleryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
 
         GridView gridview = (GridView) view.findViewById(R.id.gridview);
-        CustomImageAdapter customImageAdapter =new CustomImageAdapter(this.getActivity());
+        CustomImageAdapter customImageAdapter = new CustomImageAdapter(this.getActivity());
         gridview.setAdapter(customImageAdapter);
 //        try {
 //            gridview.setAdapter(new CustomImageAdapter(this.getActivity(), getAllLocalImagesAsync.get()));
@@ -29,12 +29,14 @@ public class GalleryFragment extends Fragment {
 //        } catch (ExecutionException|InterruptedException e) {
 //            e.printStackTrace();
 //        }
+
         customImageAdapter.notifyDataSetChanged();
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
             }
         });
+
         return view;
     }
     @Override

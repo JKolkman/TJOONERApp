@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="300sp"
         android:id="@+id/iv_media_info_image"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
@@ -31,4 +31,22 @@
         android:id="@+id/tv_media_info_desc"
         android:layout_below="@+id/tv_media_info_author"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/categories"
+        android:id="@+id/textView"
+        android:layout_below="@+id/tv_media_info_desc"
+        android:layout_alignParentStart="true" />
+
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gridView_imageinfo"
+        android:numColumns="auto_fit"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView" />
+
 </RelativeLayout>

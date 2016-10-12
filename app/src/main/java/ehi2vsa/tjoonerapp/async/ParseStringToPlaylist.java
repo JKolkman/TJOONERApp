@@ -45,8 +45,8 @@ public class ParseStringToPlaylist extends AsyncTask<String, String, ArrayList<P
                     author = jObjectMedia.getString("Author");
                     mediaType = jObjectMedia.getString("MediaType");
                     preview = jObjectMedia.getString("Preview");
-                    Media media = new Media(id2, previewId, resourceId, description, author, mediaType, preview);
-                    arrayMedia.add(media);
+                    //Media media = new Media(id2, previewId, resourceId, description, author, mediaType, preview);
+                    //arrayMedia.add(media);
                 }
                 Playlist playlist = new Playlist(id, title, arrayMedia);
                 arrayPlaylist.add(playlist);

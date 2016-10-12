@@ -3,6 +3,8 @@ package ehi2vsa.tjoonerapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import ehi2vsa.tjoonerapp.adapters.CategoryImageAdapter;
@@ -26,5 +28,14 @@ public class CategoryInfoActivity extends AppCompatActivity {
         gridview = (GridView) findViewById(R.id.gv_category_info);
         adapter = new CategoryImageAdapter(category.getMedia(), this);
         gridview.setAdapter(adapter);
+
+        newIntent = new Intent(this, MediaInfoActivity.class);
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                newIntent.putExtra("Media", category.getMedia().get(i));
+                startActivity(newIntent);
+            }
+        });
     }
 }
