@@ -34,8 +34,6 @@ public class CustomImageAdapter extends BaseAdapter {
 
     public int getCount() {
         return imagesOnPhone.getImageInfos().size();
-//        return images.size();
-//        return mThumbIds.length;
     }
 
     public Object getItem(int position) {
@@ -71,49 +69,9 @@ public class CustomImageAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         ImageInfo imageInfo = images.get(position);
-//        ImageInfo imageInfo = imagesOnPhone.getIm
-// ageInfo(position);
         holder.ivImage.setImageBitmap(imageInfo.getThumbnail());
         holder.tvPath.setText(imageInfo.getTitle());
         Log.d("Position", "getView: Position is "+position);
         return convertView;
     }
-    //    private ArrayList<ImageInfo> getAllShownImagesPath(Activity activity) {
-//        Uri uri;
-//        Cursor cursor;
-//        int column_index_data, column_index_id;
-//        ArrayList<ImageInfo> listOfAllImages = new ArrayList<>();
-//        String absolutePathOfImage = null;
-//        String titleOfImage = null;
-//        uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-//
-//        String[] projection = {MediaStore.MediaColumns.DATA,
-//                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
-//
-//        cursor = activity.getContentResolver().query(uri, projection, null,
-//                null, null);
-//
-//        column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-//        while (cursor.moveToNext()) {
-//            absolutePathOfImage = cursor.getString(column_index_data);
-//            listOfAllImages.add(new ImageInfo(absolutePathOfImage,getThumbnail(activity, absolutePathOfImage)));
-//        }
-//        Log.d("size", "getAllShownImagesPath: size " + listOfAllImages.size());
-//        cursor.close();
-//        return listOfAllImages;
-//    }
-//
-//    public static Bitmap getThumbnail(Activity activity, String path) {
-//        ContentResolver cr = activity.getContentResolver();
-//        Cursor ca = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.MediaColumns._ID}, MediaStore.MediaColumns.DATA + "=?", new String[]{path}, null);
-//        if (ca != null && ca.moveToFirst()) {
-//            int id = ca.getInt(ca.getColumnIndex(MediaStore.MediaColumns._ID));
-//            ca.close();
-//            return MediaStore.Images.Thumbnails.getThumbnail(cr, id, MediaStore.Images.Thumbnails.MINI_KIND, null);
-//        }
-//
-//        ca.close();
-//        return null;
-//
-//    }
 }

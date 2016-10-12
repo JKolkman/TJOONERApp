@@ -16,6 +16,11 @@ public class ImageInfo {
         this.thumbnail = thumbnail;
     }
 
+    public ImageInfo(String title, String large_image_path) {
+        this.title = title;
+        this.large_image_path = large_image_path;
+    }
+
     public Bitmap getThumbnail() {
         return thumbnail;
     }
@@ -26,5 +31,9 @@ public class ImageInfo {
 
     public String getTitle() {
         return title;
+    }
+
+    public void setThumbnail(Bitmap thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }
