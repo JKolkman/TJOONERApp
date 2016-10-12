@@ -23,7 +23,7 @@ public class GetAllLocalImagesAsync extends AsyncTask<Activity, Integer, ArrayLi
         Uri uri;
         Cursor cursor;
         int column_index_data, column_index_title;
-        ArrayList<ImageInfo> listOfAllImages = new ArrayList<>();
+//        ArrayList<ImageInfo> listOfAllImages = new ArrayList<>();
         String absolutePathOfImage = null;
         String titleOfImage = null;
         Bitmap thumbnail=null;
@@ -43,10 +43,10 @@ public class GetAllLocalImagesAsync extends AsyncTask<Activity, Integer, ArrayLi
             titleOfImage = cursor.getString(column_index_title);
 //            listOfAllImages.add(new ImageInfo(titleOfImage,absolutePathOfImage));
             thumbnail = getThumbnail(activity,absolutePathOfImage);
-            listOfAllImages.add(new ImageInfo(titleOfImage, absolutePathOfImage, thumbnail));
+//            listOfAllImages.add(new ImageInfo(titleOfImage, absolutePathOfImage, thumbnail));
             ImagesOnPhone.getInstance().addImageInfo(new ImageInfo(titleOfImage, absolutePathOfImage, thumbnail));
         }
-        Log.d("size", "getAllShownImagesPath: size " + listOfAllImages.size());
+//        Log.d("size", "getAllShownImagesPath: size " + listOfAllImages.size());
         cursor.close();
 
         return null;

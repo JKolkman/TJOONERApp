@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import ehi2vsa.tjoonerapp.async.GetAllLocalImagesAsync;
 import ehi2vsa.tjoonerapp.async.GlobalAsync;
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
@@ -27,6 +28,8 @@ public class LoggedIn extends FragmentActivity
     GalleryFragment gallery;
     LoginToken token = LoginToken.getInstance();
     Toolbar toolbar;
+    GetAllLocalImagesAsync getAllLocalImagesAsync;
+    boolean firsttimeloadinglocal = true;
     GlobalAsync globalAsync;
 
     @Override
@@ -59,11 +62,6 @@ public class LoggedIn extends FragmentActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        globalAsync = new GlobalAsync();
-        globalAsync.execute(this);
-
-
     }
 
     @Override
@@ -111,6 +109,11 @@ public class LoggedIn extends FragmentActivity
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, media).commit();
                     break;
                 case R.id.nav_gallery:
+                    if (firsttimeloadinglocal){
+                        getAllLocalImagesAsync=new GetAllLocalImagesAsync();
+                        getAllLocalImagesAsync.execute(this);
+                        firsttimeloadinglocal = false;
+                    }
                     toolbar.setTitle(R.string.gallery);
                     gallery.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, gallery).commit();

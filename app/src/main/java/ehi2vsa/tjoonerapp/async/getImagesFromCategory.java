@@ -54,13 +54,20 @@ public class getImagesFromCategory extends AsyncTask<String, String, ArrayList<M
             JSONArray jsonArray = new JSONArray(response.toString());
             String mediaID, mediaPreviewId, mediaResourceId, mediaDescription, mediaAuthor, mediaType, mediaPreview;
             for (int i = 0; i < jsonArray.length(); i++) {
+                ArrayList<String> categoriesString = new ArrayList<>();
                 boolean inCategory = false;
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 JSONArray jArray = jsonObject.getJSONArray("Categories");
                 for (int j = 0; j < jArray.length(); j++) {
+                    String categoryString2 = "";
                     JSONObject jObject = jArray.getJSONObject(j);
+                    categoryString2 += jObject.getString("Description");
+                    categoryString2 += ";";
+                    categoryString2 += jObject.getString("BackgroundColor");
+                    categoriesString.add(categoryString2);
                     if (jObject.getString("Id").equals(categoryID)) {
                         inCategory = true;
+
                     }
                 }
                 if (inCategory) {
@@ -71,7 +78,7 @@ public class getImagesFromCategory extends AsyncTask<String, String, ArrayList<M
                     mediaAuthor = jsonObject.getString("Author");
                     mediaType = jsonObject.getString("MediaType");
                     mediaPreview = jsonObject.getString("Preview");
-                    Media temp = new Media(mediaID, mediaPreviewId, mediaResourceId, mediaDescription, mediaAuthor, mediaType, mediaPreview);
+                    Media temp = new Media(mediaID, mediaPreviewId, mediaResourceId, mediaDescription, mediaAuthor, mediaType, mediaPreview, categoriesString);
                     media.add(temp);
                 }
             }

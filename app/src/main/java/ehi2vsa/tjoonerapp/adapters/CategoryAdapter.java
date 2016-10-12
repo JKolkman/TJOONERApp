@@ -84,6 +84,7 @@ public class CategoryAdapter extends BaseAdapter {
 
         holder.title.setText(category.getDescription());
         holder.title.setTextColor(Color.parseColor(category.getBackgroundcolor()));
+        holder.title.setTextSize(25);
         return convertView;
     }
 }

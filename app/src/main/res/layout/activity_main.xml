@@ -41,7 +41,7 @@
             android:id="@+id/et_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/button"
+            android:layout_above="@+id/Login_button"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="75dp"
             android:ems="10"
@@ -50,25 +50,43 @@
             android:hint="Password"
             android:textColorHint="@color/textWhite"
             android:textColor="@color/textWhite"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CBRememberUserName"
+            android:layout_below="@id/et_password"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@id/Login_button"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/CBRememberUserName"
+            android:text="@string/Remember_User_name"
+            android:layout_alignBaseline="@id/CBRememberUserName"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CBRememberToken"
+            android:layout_below="@id/CBRememberUserName"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/CBRememberToken"
+            android:layout_alignBaseline="@id/CBRememberToken"
+            android:text="@string/Remember_Token"
+            android:layout_above="@id/Login_button"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/Login_button"
             android:layout_width="100sp"
             android:layout_height="50sp"
             android:layout_alignEnd="@+id/et_password"
             android:layout_alignParentBottom="true"
             android:background="@color/button"
             android:textColor="@color/textWhite"
-            android:text="@string/login" />
+            android:text="@string/login"
+            />
 
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="login hack"
-            android:id="@+id/login_hack"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
     </RelativeLayout>
 </RelativeLayout>

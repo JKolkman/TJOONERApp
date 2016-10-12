@@ -21,10 +21,11 @@ import ehi2vsa.tjoonerapp.async.GetCategories;
 import ehi2vsa.tjoonerapp.objects.Category;
 
 public class MediaFragment extends Fragment {
-    ArrayList<Category>categories;
+    ArrayList<Category> categories;
     private GridView gridview;
     private CategoryAdapter adapter;
     Intent intent;
+    boolean firsttime = true;
 
 
     @Nullable
@@ -32,15 +33,8 @@ public class MediaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_media, container, false);
         gridview = (GridView) view.findViewById(R.id.gv_media_fragment);
-
-        try {
-            GetCategories getCategories = new GetCategories();
-            getCategories.execute();
-            categories = getCategories.get();
-            String toast = "Retrieved " + categories.size() + " categories";
-            Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Log.d("OnclickListener", e.getMessage());
+        if (firsttime) {
+            loadItems();
         }
 
         adapter = new CategoryAdapter(categories, getActivity());
@@ -54,6 +48,21 @@ public class MediaFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         return view;
+    }
+
+
+    private void loadItems() {
+        try {
+            GetCategories getCategories = new GetCategories();
+            getCategories.execute();
+            categories = getCategories.get();
+            String toast = "Retrieved " + categories.size() + " categories";
+            Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.d("OnclickListener", e.getMessage());
+        }
+        firsttime = false;
     }
 }
