@@ -53,20 +53,20 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent(this, LoggedIn.class);
 
         sharedPref = this.getSharedPreferences(PREFS_NAME, Context.MODE_MULTI_PROCESS);
-        String name = sharedPref.getString(USER,null);
-        if (!sharedPref.getString(USER,null).isEmpty())
-            {
-                cbUsername.setChecked(true);
-                usernameET.setText(name);
-            }
-//
-//
+       //
         String savedToken = sharedPref.getString(ACCESS_TOKEN,null);
         if (sharedPref.getString(ACCESS_TOKEN,null) != null ) {
             cbToken.setChecked(true);
             code.setCode(savedToken);
             startActivity(intent);
         }
+        String name = sharedPref.getString(USER,null);
+        if (sharedPref.getString(USER,null)!=null)
+        {
+            cbUsername.setChecked(true);
+            usernameET.setText(name);
+        }
+//
         //            loginhack.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
