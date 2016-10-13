@@ -147,7 +147,7 @@ public class LoggedIn extends FragmentActivity
             }
         }catch (Exception e){
             Log.d("Switch", e.getMessage());
-            Toast.makeText(LoggedIn.this, "You are already in this menu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.currentpage), Toast.LENGTH_LONG).show();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

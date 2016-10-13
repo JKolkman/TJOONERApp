@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TJOONER</string>
+    <string name="login">Log in</string>
+    <string name="main_menu">Hoofdmenu</string>
+    <string name="create_photo">Maak foto</string>
+    <string name="create_video">Maak video</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="title_activity_logged_in">Ingelogd</string>
+    <string name="user"></string>
+    <string name="token"></string>
+
+    <string name="navigation_drawer_open">Open navigatielade</string>
+    <string name="navigation_drawer_close">Sluit navigatielade</string>
+
+    <string name="settings">Instellingen</string>
+    <string name="gallery">Gallerij</string>
+    <string name="camera">Camera</string>
+    <string name="video">Video</string>
+    <string name="media">Media</string>
+    <string name="logout">Log uit</string>
+    <string name="currentpage">U zit al in dit menu</string>
+
+    <string name="images">Afbeeldingen</string>
+    <string name="whitespace"> </string>
+    <string name="categories">Categorieën</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hallo leeg fragment</string>
+    <string name="title">Titel</string>
+    <string name="description">Beschrijving</string>
+    <string name="save">Opslaan</string>
+    <string name="username">Gebruikersnaam</string>
+    <string name="password">Wachtwoord</string>
+    <string name="Remember_User_name">Onthoudt gebruikersnaam</string>
+    <string name="Remember_Token">Log automatisch in</string>
+</resources>
