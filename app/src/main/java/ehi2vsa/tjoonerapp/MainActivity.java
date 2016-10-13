@@ -56,15 +56,20 @@ public class MainActivity extends AppCompatActivity {
        //
         String savedToken = sharedPref.getString(ACCESS_TOKEN,null);
         if (sharedPref.getString(ACCESS_TOKEN,null) != null ) {
+            Log.d("sharedPref", "onCreate: ACCES+_TOKEN IS"+savedToken);
             cbToken.setChecked(true);
             code.setCode(savedToken);
             startActivity(intent);
+        } else{
+            cbToken.setChecked(false);
         }
         String name = sharedPref.getString(USER,null);
         if (sharedPref.getString(USER,null)!=null)
         {
             cbUsername.setChecked(true);
             usernameET.setText(name);
+        } else {
+            cbUsername.setChecked(false);
         }
 //
         //            loginhack.setOnClickListener(new View.OnClickListener() {
@@ -137,5 +142,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sharedPref = this.getSharedPreferences(PREFS_NAME, Context.MODE_MULTI_PROCESS);
+        Log.d("sharedPref", "onCreate: ACCES+_TOKEN IS"+sharedPref.getString(ACCESS_TOKEN,null));
+        if (sharedPref.getString(ACCESS_TOKEN,null) == null ) {
+            cbToken.setChecked(false);
+
+        }
+        String name = sharedPref.getString(USER,null);
+        if (sharedPref.getString(USER,null)!=null)
+        {
+            cbUsername.setChecked(true);
+            usernameET.setText(name);
+        } else {
+            cbUsername.setChecked(false);
+        }
+
     }
+}
 //}

@@ -21,6 +21,7 @@ public class CustomImageAdapter extends BaseAdapter {
 
     private ImagesOnPhone imagesOnPhone = ImagesOnPhone.getInstance();
     private ArrayList<ImageInfo> images = imagesOnPhone.getImageInfos();
+    private ArrayList<ImageInfo> tempImages;
 
     public CustomImageAdapter(Activity activity,ArrayList<ImageInfo> images) {
         mContext = activity;
@@ -68,10 +69,17 @@ public class CustomImageAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        ImageInfo imageInfo = images.get(position);
+        ImageInfo imageInfo = ImagesOnPhone.getInstance().getImageInfo(position);
+//        notifyDataSetChanged();
+//        ImageInfo imageInfo = images.get(position);
         holder.ivImage.setImageBitmap(imageInfo.getThumbnail());
         holder.tvPath.setText(imageInfo.getTitle());
         Log.d("Position", "getView: Position is "+position);
         return convertView;
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
     }
 }
