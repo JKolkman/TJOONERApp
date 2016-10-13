@@ -43,6 +43,7 @@ public class GalleryFragment extends Fragment {
         gridview.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View view, DragEvent dragEvent) {
+
                 customImageAdapter.notifyDataSetChanged();
                 return false;
             }
