@@ -36,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
     String ACCESS_TOKEN = "ACCESS_TOKEN";
     String USER = "USER";
+    final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final String PREFS_NAME = "MyPrefsFile";
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

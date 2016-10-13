@@ -1,5 +1,7 @@
 package ehi2vsa.tjoonerapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentActivity;
@@ -31,6 +33,11 @@ public class LoggedIn extends FragmentActivity
     GetAllLocalImagesAsync getAllLocalImagesAsync;
     boolean firsttimeloadinglocal = true;
     GlobalAsync globalAsync;
+
+    SharedPreferences sharedPref;
+    String ACCESS_TOKEN = "ACCESS_TOKEN";
+    String USER = "USER";
+    final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +136,11 @@ public class LoggedIn extends FragmentActivity
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, video).commit();
                     break;
                 case R.id.nav_logout:
+                    sharedPref = this.getSharedPreferences(PREFS_NAME, Context.MODE_MULTI_PROCESS);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.clear();
+                    editor.remove(ACCESS_TOKEN);
+                    editor.apply();
                     token.logout();
                     finish();
                     break;
