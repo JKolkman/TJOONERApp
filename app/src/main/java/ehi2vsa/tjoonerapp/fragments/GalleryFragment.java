@@ -9,6 +9,7 @@ import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
@@ -40,12 +41,15 @@ public class GalleryFragment extends Fragment {
         while (ImagesOnPhone.getInstance().getImageInfoSize() < 20){
             customImageAdapter.notifyDataSetChanged();
         }
-        gridview.setOnDragListener(new View.OnDragListener() {
+        gridview.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public boolean onDrag(View view, DragEvent dragEvent) {
+            public void onScrollStateChanged(AbsListView absListView, int i) {
 
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
                 customImageAdapter.notifyDataSetChanged();
-                return false;
             }
         });
 
