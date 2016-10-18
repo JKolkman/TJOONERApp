@@ -68,6 +68,7 @@ public class LoggedIn extends FragmentActivity
         video = new VideoFragment();
         gallery = new GalleryFragment();
         media = new MediaFragment();
+        settings = new SettingFragment();
 
         if (findViewById(R.id.fragment_container) != null) {
             if (savedInstanceState != null) {
