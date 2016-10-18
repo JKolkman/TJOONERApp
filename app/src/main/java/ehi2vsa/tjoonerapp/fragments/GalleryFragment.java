@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import ehi2vsa.tjoonerapp.R;
-import ehi2vsa.tjoonerapp.ViewImageActivity;
 import ehi2vsa.tjoonerapp.adapters.CustomImageAdapter;
 import ehi2vsa.tjoonerapp.async.GetAllLocalImagesAsync;
+import ehi2vsa.tjoonerapp.intents.ViewImageActivity;
 import ehi2vsa.tjoonerapp.singletons.ImagesOnPhone;
 
 public class GalleryFragment extends Fragment {
@@ -44,12 +43,12 @@ public class GalleryFragment extends Fragment {
         gridview.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
-
+                customImageAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-                customImageAdapter.notifyDataSetChanged();
+
             }
         });
 
