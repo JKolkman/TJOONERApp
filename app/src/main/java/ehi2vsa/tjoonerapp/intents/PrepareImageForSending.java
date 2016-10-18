@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -61,12 +62,23 @@ public class PrepareImageForSending extends AppCompatActivity {
         java.util.Date time=new java.util.Date((long)date_taken);
 
         et_Date.setText(time.toString());
-        if (cb_yes.isChecked()&& sharedPref.getString(USER,null)!=null){
-            cb_no.setChecked(false);
-            et_Author.setText(sharedPref.getString(USER,null));
-        } else {
-            cb_no.setChecked(true);
-        }
-
-    }
+        CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (compoundButton == cb_no){
+                    cb_yes.setChecked(!b);
+                } else if (compoundButton == cb_yes){
+                    cb_no.setChecked(!b);
+                } else if (compoundButton == cb_img){
+                   cb_movie.setChecked(!b);
+                } else {
+                   cb_img.setChecked(!b);
+                }
+            }
+        };
+        cb_yes.setOnCheckedChangeListener(onCheckedChangeListener);
+        cb_no.setOnCheckedChangeListener(onCheckedChangeListener);
+        cb_img.setOnCheckedChangeListener(onCheckedChangeListener);
+        cb_movie.setOnCheckedChangeListener(onCheckedChangeListener);
+            }
 }

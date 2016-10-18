@@ -104,7 +104,6 @@
             android:id="@+id/tv_media_type"
             android:text="@string/media_type"
             android:layout_below="@id/et_date"/>
-
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
