@@ -1,29 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_title"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_description"/>
-    <CheckBox
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/author"
-        android:id="@+id/cb_authorCheck"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_authorName"/>
+        android:layout_margin="10sp">
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dp_ImageDate">
+        <ImageView
+            android:id="@+id/iv_prepare_image"
+            android:layout_width="wrap_content"
+            android:layout_height="300sp" />
 
-    </DatePicker>
+        <TextView
+            android:id="@+id/tv_prepare_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_prepare_image"
+            android:text="@string/image_title" />
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_prepare_title"
+            android:layout_below="@id/iv_prepare_image"
+            android:layout_toEndOf="@+id/tv_prepare_title" />
+
+        <TextView
+            android:id="@+id/tv_prepare_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_prepare_title"
+            android:text="@string/image_description" />
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_prepare_description"
+            android:layout_below="@id/et_title"
+            android:layout_toEndOf="@id/tv_prepare_description" />
+
+        <TextView
+            android:id="@+id/tv_checkOwnAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_description"
+            android:text="@string/author" />
+
+        <CheckBox
+            android:id="@+id/cb_authorCheckYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_checkOwnAuthor"
+            android:layout_alignTop="@id/tv_checkOwnAuthor"
+            android:layout_below="@id/et_description"
+            android:layout_toRightOf="@id/tv_checkOwnAuthor"
+            android:text="@string/yes" />
+
+        <CheckBox
+            android:id="@+id/cb_authorCheckNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_checkOwnAuthor"
+            android:layout_alignTop="@id/tv_checkOwnAuthor"
+            android:layout_below="@id/et_description"
+            android:layout_toRightOf="@id/cb_authorCheckYes"
+            android:text="@string/no" />
+
+        <TextView
+            android:id="@+id/tv_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cb_authorCheckNo"
+            android:text="@string/author_name" />
+
+        <EditText
+            android:id="@+id/et_authorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cb_authorCheckNo" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_authorName"
+            android:text="@string/date" />
+
+        <EditText
+            android:id="@+id/et_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_authorName"
+            android:ems="10"
+            android:inputType="date" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_media_type"
+            android:text="@string/media_type"
+            android:layout_below="@id/et_date"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_checkImage"
+            android:text="@string/image"
+            android:layout_toEndOf="@id/tv_media_type"
+            android:layout_alignBaseline="@id/tv_media_type"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_checkVideo"
+            android:text="@string/video"
+            android:layout_toEndOf="@id/cb_checkImage"
+            android:layout_alignBaseline="@id/cb_checkImage"/>
+    </RelativeLayout>
 
 </RelativeLayout>

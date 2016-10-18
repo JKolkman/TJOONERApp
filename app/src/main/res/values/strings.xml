@@ -12,6 +12,8 @@
     <string name="author">author</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string name="settings">Settings</string>
     <string name="gallery">Gallery</string>
@@ -34,5 +36,11 @@
     <string name="password">Password</string>
     <string name="Remember_User_name">Remember username</string>
     <string name="Remember_Token">Login automatically</string>
+    <string name="image_title">Title</string>
+    <string name="image_description">Description</string>
+    <string name="author_name">Name:</string>
+    <string name="date">Date</string>
+    <string name="media_type">Type of media</string>
+    <string name="image">Image</string>
 
 </resources>

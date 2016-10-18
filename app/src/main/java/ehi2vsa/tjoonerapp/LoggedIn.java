@@ -1,10 +1,8 @@
 package ehi2vsa.tjoonerapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -68,6 +66,7 @@ public class LoggedIn extends FragmentActivity
         video = new VideoFragment();
         gallery = new GalleryFragment();
         media = new MediaFragment();
+
 
         if (findViewById(R.id.fragment_container) != null) {
             if (savedInstanceState != null) {
