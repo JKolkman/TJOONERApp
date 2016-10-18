@@ -19,9 +19,10 @@ import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.adapters.CategoryAdapter;
 import ehi2vsa.tjoonerapp.async.GetCategories;
 import ehi2vsa.tjoonerapp.objects.Category;
+import ehi2vsa.tjoonerapp.singletons.Categories;
 
 public class MediaFragment extends Fragment {
-    ArrayList<Category> categories;
+    //ArrayList<Category>categories = Categories.getInstance().getCategories();
     private GridView gridview;
     private CategoryAdapter adapter;
     Intent intent;
@@ -37,14 +38,14 @@ public class MediaFragment extends Fragment {
             loadItems();
         }
 
-        adapter = new CategoryAdapter(categories, getActivity());
+        adapter = new CategoryAdapter(Categories.getInstance().getCategories(), getActivity());
         gridview.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         intent = new Intent(getActivity(), CategoryInfoActivity.class);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                intent.putExtra("Category", categories.get(i));
+                intent.putExtra("Category", Categories.getInstance().getCategories().get(i));
                 startActivity(intent);
             }
         });
@@ -52,14 +53,19 @@ public class MediaFragment extends Fragment {
         return view;
     }
 
+//    @Override
+//    public void onResume() {
+//        adapter.notifyDataSetChanged();
+//    }
 
     private void loadItems() {
         try {
+            Categories.getInstance().getCategories().clear();
             GetCategories getCategories = new GetCategories();
             getCategories.execute();
-            categories = getCategories.get();
-            String toast = "Retrieved " + categories.size() + " categories";
+            String toast = "Retrieved " + Categories.getInstance().getCategories().size() + " categories";
             Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
+            adapter.notifyDataSetChanged();
         } catch (Exception e) {
             Log.d("OnclickListener", e.getMessage());
         }

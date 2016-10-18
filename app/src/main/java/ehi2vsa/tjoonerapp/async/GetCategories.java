@@ -16,15 +16,16 @@ import java.util.ArrayList;
 
 import ehi2vsa.tjoonerapp.objects.Category;
 import ehi2vsa.tjoonerapp.objects.Media;
+import ehi2vsa.tjoonerapp.singletons.Categories;
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
 
 /**
  * Created by joost on 06/10/2016.
  */
-public class GetCategories extends AsyncTask<String, String, ArrayList<Category>> {
+public class GetCategories extends AsyncTask<String, String, String> {
     @Override
-    protected ArrayList<Category> doInBackground(String... strings) {
-        ArrayList<Category> categories = new ArrayList<Category>();
+    protected String doInBackground(String... strings) {
+        ArrayList<Category> categories = Categories.getInstance().getCategories();
         String token = LoginToken.getInstance().getToken();
         try {
             //Getting the JSON String
@@ -55,12 +56,12 @@ public class GetCategories extends AsyncTask<String, String, ArrayList<Category>
                 getImagesFromCategory getImages = new getImagesFromCategory(id);
                 ArrayList<Media>media = getImages.doInBackground();
                 Category category = new Category(media, id, backgroundcolor, description);
-                categories.add(category);
+                Categories.getInstance().getCategories().add(category);
                 Log.d("Amount of pictures", "Category " + i + " has " + category.getMedia().size() + " images");
             }
             Log.d("Size", categories.size() + " categories");
 
-            return categories;
+            return "yay";
         } catch (IOException|JSONException e) {
             Log.d("GetCategoriesConnection", e.getMessage());
         }

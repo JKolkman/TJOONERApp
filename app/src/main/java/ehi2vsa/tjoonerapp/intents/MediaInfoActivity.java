@@ -15,8 +15,11 @@ import java.util.concurrent.ExecutionException;
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.adapters.CategoryNameAdapter;
 import ehi2vsa.tjoonerapp.async.DeleteImage;
+import ehi2vsa.tjoonerapp.async.GetCategories;
 import ehi2vsa.tjoonerapp.async.PreviewIdToImage;
+import ehi2vsa.tjoonerapp.objects.Category;
 import ehi2vsa.tjoonerapp.objects.Media;
+import ehi2vsa.tjoonerapp.singletons.Categories;
 
 /**
  * Created by joost on 05/10/2016.
@@ -49,7 +52,11 @@ public class MediaInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DeleteImage delete = new DeleteImage();
                 delete.execute(media.getId());
-
+                Categories.getInstance().getCategories().clear();
+                GetCategories get = new GetCategories();
+                get.execute();
+                finishActivity(1);
+                finish();
             }
         });
 
