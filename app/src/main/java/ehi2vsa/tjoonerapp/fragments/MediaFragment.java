@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import ehi2vsa.tjoonerapp.CategoryInfoActivity;
+import ehi2vsa.tjoonerapp.intents.CategoryInfoActivity;
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.adapters.CategoryAdapter;
 import ehi2vsa.tjoonerapp.async.GetCategories;
