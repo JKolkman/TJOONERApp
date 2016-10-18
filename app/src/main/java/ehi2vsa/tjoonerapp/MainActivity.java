@@ -29,7 +29,7 @@ import ehi2vsa.tjoonerapp.singletons.LoginToken;
 public class MainActivity extends AppCompatActivity {
     EditText usernameET, passwordET;
     LoginToken code = LoginToken.getInstance();
-    Button button, loginhack;
+    Button button;
     Intent intent;
     ImageView logo;
     CheckBox cbUsername, cbToken;
@@ -40,12 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.Login_button);
-//        loginhack = (Button) findViewById(R.id.login_hack);
         usernameET = (EditText) findViewById(R.id.et_username);
         passwordET = (EditText) findViewById(R.id.et_password);
         cbUsername = (CheckBox) findViewById(R.id.CBRememberUserName);
@@ -53,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent(this, LoggedIn.class);
 
         sharedPref = this.getSharedPreferences(PREFS_NAME, Context.MODE_MULTI_PROCESS);
-       //
+
         String savedToken = sharedPref.getString(ACCESS_TOKEN,null);
         if (sharedPref.getString(ACCESS_TOKEN,null) != null ) {
             Log.d("sharedPref", "onCreate: ACCES+_TOKEN IS"+savedToken);
@@ -141,4 +138,3 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-//}

@@ -1,10 +1,18 @@
 package ehi2vsa.tjoonerapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +21,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import ehi2vsa.tjoonerapp.async.GetAllLocalImagesAsync;
 import ehi2vsa.tjoonerapp.async.GlobalAsync;
@@ -38,6 +51,10 @@ public class LoggedIn extends FragmentActivity
     String ACCESS_TOKEN = "ACCESS_TOKEN";
     String USER = "USER";
     final String PREFS_NAME = "MyPrefsFile";
+
+    //test Stan
+    String mCurrentPhotoPath;
+    static final int REQUEST_TAKE_PHOTO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +122,7 @@ public class LoggedIn extends FragmentActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         try {
@@ -127,7 +144,8 @@ public class LoggedIn extends FragmentActivity
                     break;
                 case R.id.nav_camera:
                     toolbar.setTitle(R.string.camera);
-                    camera.setArguments(getIntent().getExtras());
+                    dispatchTakePictureIntent();
+                    //camera.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
                     break;
                 case R.id.nav_video:
@@ -153,5 +171,46 @@ public class LoggedIn extends FragmentActivity
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    //test Stan
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
+    }
+
+    //test Stan
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                camera.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
     }
 }

@@ -59,15 +59,13 @@ public class MediaFragment extends Fragment {
 //    }
 
     private void loadItems() {
-        try {
-            Categories.getInstance().getCategories().clear();
-            GetCategories getCategories = new GetCategories();
-            getCategories.execute();
-            String toast = "Retrieved " + Categories.getInstance().getCategories().size() + " categories";
-            Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
+        Categories.getInstance().getCategories().clear();
+        GetCategories getCategories = new GetCategories();
+        getCategories.execute();
+        //String toast = "Retrieved " + Categories.getInstance().getCategories().size() + " categories";
+        //Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
+        if (adapter != null) {
             adapter.notifyDataSetChanged();
-        } catch (Exception e) {
-            Log.d("OnclickListener", e.getMessage());
         }
         firsttime = false;
     }
