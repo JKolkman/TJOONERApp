@@ -71,29 +71,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             cbUsername.setChecked(false);
         }
-//
-        //            loginhack.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    String username = "s2";
-//                    String password = "s1a2x3i4o5n6";
-//                    LoginTask task = new LoginTask(username, password);
-//                    task.execute();
-//                    try {
-//                        String token = task.get();
-//                        System.out.println(token);
-//                        if (!token.contains("Username") && !token.contains("000000000000") && !token.equals("Error")) {
-//                            code.setCode(token);
-//                            startActivity(intent);
-//                        } else {
-//                            Toast.makeText(MainActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
-//                        }
-//                    } catch (Exception e) {
-//                        System.out.println(e.getMessage());
-//                    }
-//                }
-//            });
-            button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.d("onClick", "onClick: clicked on button");
