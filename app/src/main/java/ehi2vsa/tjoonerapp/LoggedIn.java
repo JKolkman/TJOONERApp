@@ -32,6 +32,7 @@ import ehi2vsa.tjoonerapp.async.GlobalAsync;
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
 import ehi2vsa.tjoonerapp.fragments.MediaFragment;
+import ehi2vsa.tjoonerapp.fragments.SettingFragment;
 import ehi2vsa.tjoonerapp.fragments.VideoFragment;
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
 
@@ -41,6 +42,7 @@ public class LoggedIn extends FragmentActivity
     MediaFragment media;
     VideoFragment video;
     GalleryFragment gallery;
+    SettingFragment settings;
     LoginToken token = LoginToken.getInstance();
     Toolbar toolbar;
     GetAllLocalImagesAsync getAllLocalImagesAsync;
@@ -133,8 +135,8 @@ public class LoggedIn extends FragmentActivity
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, media).commit();
                     break;
                 case R.id.nav_gallery:
-                    if (firsttimeloadinglocal){
-                        getAllLocalImagesAsync=new GetAllLocalImagesAsync();
+                    if (firsttimeloadinglocal) {
+                        getAllLocalImagesAsync = new GetAllLocalImagesAsync();
                         getAllLocalImagesAsync.execute(this);
                         firsttimeloadinglocal = false;
                     }
@@ -145,7 +147,7 @@ public class LoggedIn extends FragmentActivity
                 case R.id.nav_camera:
                     toolbar.setTitle(R.string.camera);
                     dispatchTakePictureIntent();
-                    //camera.setArguments(getIntent().getExtras());
+                    camera.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
                     break;
                 case R.id.nav_video:
@@ -162,8 +164,13 @@ public class LoggedIn extends FragmentActivity
                     token.logout();
                     finish();
                     break;
+                case R.id.nav_manage:
+                    toolbar.setTitle(R.string.settings);
+                    settings.setArguments(getIntent().getExtras());
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, settings).commit();
+                    break;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d("Switch", e.getMessage());
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.currentpage), Toast.LENGTH_LONG).show();
         }
