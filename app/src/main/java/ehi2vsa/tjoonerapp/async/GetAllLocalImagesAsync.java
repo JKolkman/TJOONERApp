@@ -22,29 +22,32 @@ public class GetAllLocalImagesAsync extends AsyncTask<Activity, Integer, ArrayLi
 
         Uri uri;
         Cursor cursor;
-        int column_index_data, column_index_title;
+        int column_index_data, column_index_title,column_index_date_taken, column_index_description;
 //        ArrayList<ImageInfo> listOfAllImages = new ArrayList<>();
-        String absolutePathOfImage = null;
-        String titleOfImage = null;
+        String absolutePathOfImage,titleOfImage,description,date_taken ;
         Bitmap thumbnail=null;
         uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
         String[] projection = {MediaStore.MediaColumns.DATA,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME, MediaStore.Images.Media.TITLE};
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME, MediaStore.Images.Media.TITLE, MediaStore.Images.Media.DATE_TAKEN, MediaStore.Images.Media.DESCRIPTION};
 
         cursor = activity.getContentResolver().query(uri, projection, null,
                 null, null);
 
         column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         column_index_title = cursor.getColumnIndex(MediaStore.MediaColumns.TITLE);
+        column_index_description = cursor.getColumnIndex(MediaStore.Images.Media.DESCRIPTION);
+        column_index_date_taken = cursor.getColumnIndex(MediaStore.Images.Media.DATE_TAKEN);
         while (cursor.moveToNext()) {
             Log.d("ÏmagesPath", "getAllShownImagesPath: adding object");
             absolutePathOfImage = cursor.getString(column_index_data);
             titleOfImage = cursor.getString(column_index_title);
+            description = cursor.getString(column_index_description);
+            date_taken = cursor.getString(column_index_date_taken);
 //            listOfAllImages.add(new ImageInfo(titleOfImage,absolutePathOfImage));
             thumbnail = getThumbnail(activity,absolutePathOfImage);
 //            listOfAllImages.add(new ImageInfo(titleOfImage, absolutePathOfImage, thumbnail));
-            ImagesOnPhone.getInstance().addImageInfo(new ImageInfo(titleOfImage, absolutePathOfImage, thumbnail));
+            ImagesOnPhone.getInstance().addImageInfo(new ImageInfo(titleOfImage, absolutePathOfImage, thumbnail,description,date_taken));
         }
 //        Log.d("size", "getAllShownImagesPath: size " + listOfAllImages.size());
         cursor.close();
