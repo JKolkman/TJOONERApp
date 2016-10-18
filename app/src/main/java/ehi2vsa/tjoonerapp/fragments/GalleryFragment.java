@@ -37,7 +37,7 @@ public class GalleryFragment extends Fragment {
 //        } catch (ExecutionException|InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        while (ImagesOnPhone.getInstance().getImageInfoSize() < 20){
+        while (ImagesOnPhone.getInstance().getImageInfoSize() < 20 && ImagesOnPhone.getInstance().getImageInfoSize() != 0){
             customImageAdapter.notifyDataSetChanged();
         }
         gridview.setOnScrollListener(new AbsListView.OnScrollListener() {
