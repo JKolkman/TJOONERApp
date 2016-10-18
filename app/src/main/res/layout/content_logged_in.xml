@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ehi2vsa.tjoonerapp.LoggedIn"
+    tools:context="ehi2vsa.tjoonerapp.activities.LoggedIn"
     tools:showIn="@layout/app_bar_logged_in">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
