@@ -56,39 +56,22 @@ public class MainActivity extends AppCompatActivity {
        //
         String savedToken = sharedPref.getString(ACCESS_TOKEN,null);
         if (sharedPref.getString(ACCESS_TOKEN,null) != null ) {
+            Log.d("sharedPref", "onCreate: ACCES+_TOKEN IS"+savedToken);
             cbToken.setChecked(true);
             code.setCode(savedToken);
             startActivity(intent);
+        } else{
+            cbToken.setChecked(false);
         }
         String name = sharedPref.getString(USER,null);
         if (sharedPref.getString(USER,null)!=null)
         {
             cbUsername.setChecked(true);
             usernameET.setText(name);
+        } else {
+            cbUsername.setChecked(false);
         }
-//
-        //            loginhack.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    String username = "s2";
-//                    String password = "s1a2x3i4o5n6";
-//                    LoginTask task = new LoginTask(username, password);
-//                    task.execute();
-//                    try {
-//                        String token = task.get();
-//                        System.out.println(token);
-//                        if (!token.contains("Username") && !token.contains("000000000000") && !token.equals("Error")) {
-//                            code.setCode(token);
-//                            startActivity(intent);
-//                        } else {
-//                            Toast.makeText(MainActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
-//                        }
-//                    } catch (Exception e) {
-//                        System.out.println(e.getMessage());
-//                    }
-//                }
-//            });
-            button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.d("onClick", "onClick: clicked on button");
@@ -137,5 +120,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sharedPref = this.getSharedPreferences(PREFS_NAME, Context.MODE_MULTI_PROCESS);
+        Log.d("sharedPref", "onCreate: ACCES+_TOKEN IS"+sharedPref.getString(ACCESS_TOKEN,null));
+        if (sharedPref.getString(ACCESS_TOKEN,null) == null ) {
+            cbToken.setChecked(false);
+
+        }
+        String name = sharedPref.getString(USER,null);
+        if (sharedPref.getString(USER,null)!=null)
+        {
+            cbUsername.setChecked(true);
+            usernameET.setText(name);
+        } else {
+            cbUsername.setChecked(false);
+        }
+
     }
+}
 //}
