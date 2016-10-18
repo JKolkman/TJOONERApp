@@ -1,4 +1,4 @@
-package ehi2vsa.tjoonerapp;
+package ehi2vsa.tjoonerapp.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.async.GetAllLocalImagesAsync;
 import ehi2vsa.tjoonerapp.async.GlobalAsync;
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
@@ -66,6 +67,7 @@ public class LoggedIn extends FragmentActivity
         video = new VideoFragment();
         gallery = new GalleryFragment();
         media = new MediaFragment();
+        settings = new SettingFragment();
 
 
         if (findViewById(R.id.fragment_container) != null) {

@@ -19,16 +19,12 @@ import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.async.PreviewIdToImage;
 import ehi2vsa.tjoonerapp.objects.Category;
 
-/**
- * Created by joost on 06/10/2016.
- */
 public class CategoryAdapter extends BaseAdapter {
     private ArrayList<Category> categories;
     private Activity context;
 
-    static class ViewHolder{
-        public ViewHolder(){
-        }
+    private static class ViewHolder{
+        ViewHolder(){}
         TextView title;
         ImageView preview;
         RelativeLayout frame;

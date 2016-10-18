@@ -1,4 +1,4 @@
-package ehi2vsa.tjoonerapp;
+package ehi2vsa.tjoonerapp.currently_notused;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import ehi2vsa.tjoonerapp.adapters.SinglePlaylistAdapter;
+import ehi2vsa.tjoonerapp.R;
+import ehi2vsa.tjoonerapp.currently_notused.SinglePlaylistAdapter;
 import ehi2vsa.tjoonerapp.intents.MediaInfoActivity;
 import ehi2vsa.tjoonerapp.objects.Playlist;
 
