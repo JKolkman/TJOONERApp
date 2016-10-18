@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">TJOONER</string>
     <string name="login">Login</string>
-    <string name="main_menu">Main Menu</string>
-    <string name="create_photo">Create Photo</string>
-    <string name="create_video">Create Video</string>
+    <string name="main_menu">Main menu</string>
+    <string name="create_photo">Create photo</string>
+    <string name="create_video">Create video</string>
     <string name="open_camera">Open Camera</string>
-    <string name="title_activity_logged_in">LoggedIn</string>
+    <string name="title_activity_logged_in">Loggedin</string>
     <string name="user"></string>
     <string name="token"></string>
     <string name="click">click</string>
@@ -18,18 +18,21 @@
     <string name="camera">Camera</string>
     <string name="video">Video</string>
     <string name="media">Media</string>
-    <string name="logout">Log Out</string>
+    <string name="logout">Log out</string>
+    <string name="currentpage">You are already in this menu</string>
 
     <string name="images">Images</string>
     <string name="whitespace"> </string>
-    <string name="categories">categories</string>
+    <string name="categories">Categories</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="save">Save</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
     <string name="Remember_User_name">Remember username</string>
-    <string name="Remember_Token">Login automaticly</string>
+    <string name="Remember_Token">Login automatically</string>
 
 </resources>
