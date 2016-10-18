@@ -1,4 +1,4 @@
-package ehi2vsa.tjoonerapp;
+package ehi2vsa.tjoonerapp.intents;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.adapters.CategoryImageAdapter;
 import ehi2vsa.tjoonerapp.objects.Category;
 

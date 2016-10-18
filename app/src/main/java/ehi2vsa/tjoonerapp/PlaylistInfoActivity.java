@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import ehi2vsa.tjoonerapp.adapters.SinglePlaylistAdapter;
+import ehi2vsa.tjoonerapp.intents.MediaInfoActivity;
 import ehi2vsa.tjoonerapp.objects.Playlist;
 
 /**

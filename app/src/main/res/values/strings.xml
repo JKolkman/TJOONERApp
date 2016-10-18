@@ -8,7 +8,7 @@
     <string name="title_activity_logged_in">Loggedin</string>
     <string name="user"></string>
     <string name="token"></string>
-
+    <string name="click">click</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

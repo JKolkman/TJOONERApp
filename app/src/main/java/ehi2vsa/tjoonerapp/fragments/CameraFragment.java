@@ -70,7 +70,7 @@ public class CameraFragment extends Fragment {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                Uri photoURI = FileProvider.getUriForFile(getActivity().getApplicationContext(),
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
