@@ -14,15 +14,12 @@ import java.util.ArrayList;
 
 import ehi2vsa.tjoonerapp.R;
 
-/**
- * Created by joost on 06/10/2016.
- */
 public class CategoryNameAdapter extends BaseAdapter {
     private ArrayList<String> strings;
     private Activity context;
 
-    static class ViewHolder {
-        public ViewHolder() {
+    private static class ViewHolder {
+        ViewHolder() {
         }
 
         TextView title;

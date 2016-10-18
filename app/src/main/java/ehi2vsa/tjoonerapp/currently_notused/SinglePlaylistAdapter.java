@@ -1,4 +1,4 @@
-package ehi2vsa.tjoonerapp.adapters;
+package ehi2vsa.tjoonerapp.currently_notused;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,9 +16,6 @@ import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.async.PreviewIdToImage;
 import ehi2vsa.tjoonerapp.objects.Media;
 
-/**
- * Created by joost on 05/10/2016.
- */
 public class SinglePlaylistAdapter extends BaseAdapter {
     ArrayList<Media> items;
     private Activity context;

@@ -1,4 +1,4 @@
-package ehi2vsa.tjoonerapp;
+package ehi2vsa.tjoonerapp.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.async.GetAllLocalImagesAsync;
 import ehi2vsa.tjoonerapp.async.GlobalAsync;
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
