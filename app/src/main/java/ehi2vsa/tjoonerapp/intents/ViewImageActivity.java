@@ -36,7 +36,6 @@ public class ViewImageActivity extends AppCompatActivity {
         ivImage.setImageBitmap(BitmapFactory.decodeFile(imageInfo.getLarge_image_path()));
 //        ivImage.setImageResource(imageInfo.getLarge_image_path());
         textView.setText(imageInfo.getTitle());
-
         editImageData= new Intent(this, PrepareImageForSending.class);
         clickButton.setOnClickListener(new View.OnClickListener() {
             @Override
