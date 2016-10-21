@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ public class MediaFragment extends Fragment {
     Intent intent;
     boolean firsttime = true;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +37,6 @@ public class MediaFragment extends Fragment {
         if (firsttime) {
             loadItems();
         }
-
         adapter = new CategoryAdapter(Categories.getInstance().getCategories(), getActivity());
         gridview.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -49,7 +48,6 @@ public class MediaFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return view;
     }
 
