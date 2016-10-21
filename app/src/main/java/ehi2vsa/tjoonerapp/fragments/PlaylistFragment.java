@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import ehi2vsa.tjoonerapp.R;
@@ -18,7 +20,7 @@ import ehi2vsa.tjoonerapp.singletons.PlaylistSingleton;
  */
 
 public class PlaylistFragment extends Fragment {
-    ListView listview;
+    GridView listview;
     private boolean firstTime = true;
     PlaylistAdapter adapter;
 
@@ -26,13 +28,12 @@ public class PlaylistFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_playlist, container, false);
-        listview = (ListView) view.findViewById(R.id.playlist_listview);
-        adapter = new PlaylistAdapter(PlaylistSingleton.getInstance().getList(), getActivity());
+        listview = (GridView) view.findViewById(R.id.playlist_gridview);
         if (firstTime) {
             LoadPlaylist();
-            adapter.notifyDataSetChanged();
             firstTime = false;
         }
+        adapter = new PlaylistAdapter(PlaylistSingleton.getInstance().getList(), getActivity());
         listview.setAdapter(adapter);
 
 

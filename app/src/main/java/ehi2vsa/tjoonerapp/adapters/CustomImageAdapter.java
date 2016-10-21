@@ -23,14 +23,14 @@ public class CustomImageAdapter extends BaseAdapter {
     private ArrayList<ImageInfo> images = imagesOnPhone.getImageInfos();
     private ArrayList<ImageInfo> tempImages;
 
-    public CustomImageAdapter(Activity activity,ArrayList<ImageInfo> images) {
+    public CustomImageAdapter(Activity activity, ArrayList<ImageInfo> images) {
         mContext = activity;
 
-//        this.images = images;
-        Log.d("Images", "CustomImageAdapter: images is "+this.images.size());
+        Log.d("Images", "CustomImageAdapter: images is " + this.images.size());
     }
+
     public CustomImageAdapter(Activity activity) {
-        mContext =activity;
+        mContext = activity;
     }
 
     public int getCount() {
@@ -74,7 +74,7 @@ public class CustomImageAdapter extends BaseAdapter {
 //        ImageInfo imageInfo = images.get(position);
         holder.ivImage.setImageBitmap(imageInfo.getThumbnail());
         holder.tvPath.setText(imageInfo.getTitle());
-        Log.d("Position", "getView: Position is "+position);
+        Log.d("Position", "getView: Position is " + position);
         return convertView;
     }
 

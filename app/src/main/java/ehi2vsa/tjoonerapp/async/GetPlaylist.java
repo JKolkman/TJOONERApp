@@ -1,6 +1,9 @@
 package ehi2vsa.tjoonerapp.async;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -84,7 +87,13 @@ public class GetPlaylist extends AsyncTask<String, String, String> {
                     Media media = new Media(id2, previewId, resourceId, description, author, mediaType, preview, categoriesString);
                     arrayMedia.add(media);
                 }
-                Playlist playlist = new Playlist(id, title, arrayMedia);
+                Playlist playlist;
+                if (arrayMedia.size() > 0) {
+                    Bitmap preview = getImage(arrayMedia.get(0).getPreviewId());
+                    playlist = new Playlist(id, title, arrayMedia, preview);
+                } else {
+                    playlist = new Playlist(id, title, arrayMedia, null);
+                }
                 arrayPlaylist.add(playlist);
             }
             Log.d("playlist amount:", "" + arrayPlaylist.size());
@@ -95,5 +104,35 @@ public class GetPlaylist extends AsyncTask<String, String, String> {
             Log.d("JSON", e.getMessage());
         }
         return "Failed";
+    }
+
+    private Bitmap getImage(String previewId) {
+        try {
+            String token = LoginToken.getInstance().getToken();
+
+            URL url = new URL(("http://setup.tjooner.tv/JCC/Saxion/TJOONER/REST/api/TjoonerResource?resourceId=" + previewId + "&userToken=" + token));
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream()));
+            String input;
+            StringBuilder response = new StringBuilder();
+
+            while ((input = reader.readLine()) != null) {
+                response.append(input);
+            }
+            reader.close();
+            System.out.println(response);
+            byte[] decodedString = Base64.decode(response.toString(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            return decodedByte;
+        } catch (IOException e) {
+            Log.d("PreviewToImage", e.getMessage());
+        }
+        return null;
     }
 }

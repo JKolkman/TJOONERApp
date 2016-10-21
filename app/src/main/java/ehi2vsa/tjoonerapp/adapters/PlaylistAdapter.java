@@ -71,14 +71,8 @@ public class PlaylistAdapter extends BaseAdapter {
         }
 
         Playlist list = PlaylistSingleton.getInstance().getList().get(position);
-        if (list.getThumbnail() != null) {
-            PreviewIdToImage image = new PreviewIdToImage(list.getThumbnail());
-            image.execute();
-            try {
-                holder.preview.setImageBitmap(image.get());
-            } catch (InterruptedException | ExecutionException e) {
-                Log.d("playlistadapter", e.getMessage());
-            }
+        if (list.getPreview() != null){
+            holder.preview.setImageBitmap(list.getPreview());
         } else {
             try{
                 Bitmap bm = BitmapFactory.decodeResource(convertView.getResources(), R.drawable.image_not_found);

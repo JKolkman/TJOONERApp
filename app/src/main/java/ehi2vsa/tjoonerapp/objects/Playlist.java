@@ -1,5 +1,7 @@
 package ehi2vsa.tjoonerapp.objects;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -10,11 +12,12 @@ public class Playlist implements Serializable{
     private String id;
     private String title;
     private ArrayList<Media> media;
-
-    public Playlist(String id, String title, ArrayList<Media> media) {
+    private Bitmap preview;
+    public Playlist(String id, String title, ArrayList<Media> media, Bitmap preview) {
         this.id = id;
         this.title = title;
         this.media = media;
+        this.preview = preview;
     }
 
     public ArrayList<Media> getMedia() {
@@ -43,5 +46,9 @@ public class Playlist implements Serializable{
             response += media.get(i).toString() + "\n";
         }
         return response;
+    }
+
+    public Bitmap getPreview() {
+        return preview;
     }
 }
