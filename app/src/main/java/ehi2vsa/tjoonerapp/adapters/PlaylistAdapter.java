@@ -1,8 +1,11 @@
-package ehi2vsa.tjoonerapp.currently_notused;
+package ehi2vsa.tjoonerapp.adapters;
 
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +18,10 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import ehi2vsa.tjoonerapp.R;
+import ehi2vsa.tjoonerapp.async.GetPlaylist;
 import ehi2vsa.tjoonerapp.async.PreviewIdToImage;
 import ehi2vsa.tjoonerapp.objects.Playlist;
+import ehi2vsa.tjoonerapp.singletons.PlaylistSingleton;
 
 public class PlaylistAdapter extends BaseAdapter {
     ArrayList<Playlist> items;
@@ -36,7 +41,7 @@ public class PlaylistAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return items.size();
+        return PlaylistSingleton.getInstance().getSize();
     }
 
     @Override
@@ -65,7 +70,7 @@ public class PlaylistAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Playlist list = items.get(position);
+        Playlist list = PlaylistSingleton.getInstance().getList().get(position);
         if (list.getThumbnail() != null) {
             PreviewIdToImage image = new PreviewIdToImage(list.getThumbnail());
             image.execute();
@@ -73,6 +78,13 @@ public class PlaylistAdapter extends BaseAdapter {
                 holder.preview.setImageBitmap(image.get());
             } catch (InterruptedException | ExecutionException e) {
                 Log.d("playlistadapter", e.getMessage());
+            }
+        } else {
+            try{
+                Bitmap bm = BitmapFactory.decodeResource(convertView.getResources(), R.drawable.image_not_found);
+                holder.preview.setImageBitmap(bm);
+            }catch (Exception e){
+
             }
         }
 

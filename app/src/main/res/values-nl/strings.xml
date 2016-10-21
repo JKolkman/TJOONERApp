@@ -36,4 +36,11 @@
     <string name="Remember_Token">Automatisch inloggen</string>
     <string name="click">Klik</string>
     <string name="author">auteur</string>
+    <string name="date">Datum</string>
+    <string name="image">Afbeelding</string>
+    <string name="image_description">Afbeelding beschrijving</string>
+    <string name="image_title">afbeelding titel</string>
+    <string name="media_type">media type</string>
+    <string name="no">Nee</string>
+    <string name="playlist">Afspeellijst</string>
 </resources>

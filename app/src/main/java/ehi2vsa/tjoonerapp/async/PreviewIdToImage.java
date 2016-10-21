@@ -46,10 +46,8 @@ public class PreviewIdToImage extends AsyncTask<String, String, Bitmap> {
             }
             reader.close();
             System.out.println(response);
-
             byte[] decodedString = Base64.decode(response.toString(), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
             return decodedByte;
         } catch (IOException e) {
             Log.d("PreviewToImage", e.getMessage());

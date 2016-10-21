@@ -50,7 +50,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".currently_notused.PlaylistInfoActivity"
+            android:name=".intents.PlaylistInfoActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
 

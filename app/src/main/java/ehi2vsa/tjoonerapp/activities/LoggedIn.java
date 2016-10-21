@@ -23,6 +23,7 @@ import ehi2vsa.tjoonerapp.async.GlobalAsync;
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
 import ehi2vsa.tjoonerapp.fragments.MediaFragment;
+import ehi2vsa.tjoonerapp.fragments.PlaylistFragment;
 import ehi2vsa.tjoonerapp.fragments.SettingFragment;
 import ehi2vsa.tjoonerapp.fragments.VideoFragment;
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
@@ -33,6 +34,7 @@ public class LoggedIn extends FragmentActivity implements NavigationView.OnNavig
     VideoFragment video;
     GalleryFragment gallery;
     SettingFragment settings;
+    PlaylistFragment playlist;
     LoginToken token = LoginToken.getInstance();
     Toolbar toolbar;
     GetAllLocalImagesAsync getAllLocalImagesAsync;
@@ -55,6 +57,7 @@ public class LoggedIn extends FragmentActivity implements NavigationView.OnNavig
         gallery = new GalleryFragment();
         media = new MediaFragment();
         settings = new SettingFragment();
+        playlist = new PlaylistFragment();
 
 
         if (findViewById(R.id.fragment_container) != null) {
@@ -121,6 +124,12 @@ public class LoggedIn extends FragmentActivity implements NavigationView.OnNavig
                     media.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, media).commit();
                     break;
+                case R.id.nav_playlist:
+                    toolbar.setTitle(R.string.playlist);
+                    playlist.setArguments(getIntent().getExtras());
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, playlist).commit();
+                    break;
+
                 case R.id.nav_gallery:
                     if (firsttimeloadinglocal) {
                         getAllLocalImagesAsync = new GetAllLocalImagesAsync();

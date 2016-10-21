@@ -22,6 +22,7 @@
     <string name="media">Media</string>
     <string name="logout">Log out</string>
     <string name="currentpage">You are already in this menu</string>
+    <string name="playlist">Playlist</string>
 
     <string name="images">Images</string>
     <string name="whitespace"> </string>

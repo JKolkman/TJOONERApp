@@ -7,6 +7,10 @@
             android:icon="@drawable/picturesicon24"
             android:title="@string/media"/>
         <item
+            android:id="@+id/nav_playlist"
+            android:icon="@drawable/playlisticon24"
+            android:title="@string/playlist"/>
+        <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/moviesicon24"
             android:title="@string/camera" />
