@@ -4,16 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import ehi2vsa.tjoonerapp.R;
+import ehi2vsa.tjoonerapp.adapters.CheckedTextViewItemAdapter;
+import ehi2vsa.tjoonerapp.objects.Category;
 import ehi2vsa.tjoonerapp.objects.ImageInfo;
+import ehi2vsa.tjoonerapp.singletons.Categories;
 import ehi2vsa.tjoonerapp.singletons.ImagesOnPhone;
 
 /**
@@ -31,8 +41,10 @@ public class PrepareImageForSending extends AppCompatActivity {
     EditText et_Title, et_Description, et_Author;
     TextView tv_Date;
     CheckBox cb_yes, cb_no, cb_img, cb_movie;
+    ListView listViewCatogries;
     ImageView iv_image;
     SharedPreferences sharedPref;
+    ArrayList<Category> selectedCategories = new ArrayList<>();
     String ACCESS_TOKEN = "ACCESS_TOKEN";
     String USER = "USER";
     final String PREFS_NAME = "MyPrefsFile";
@@ -55,6 +67,7 @@ public class PrepareImageForSending extends AppCompatActivity {
         cb_no = (CheckBox) findViewById(R.id.cb_authorCheckNo);
         cb_img = (CheckBox) findViewById(R.id.cb_checkImage);
         cb_movie = (CheckBox) findViewById(R.id.cb_checkVideo);
+        listViewCatogries = (ListView) findViewById(R.id.lv_categories);
 
         et_Title.setText(imageInfo.getTitle());
         et_Description.setText(imageInfo.getDescription());
@@ -81,7 +94,34 @@ public class PrepareImageForSending extends AppCompatActivity {
         cb_no.setOnCheckedChangeListener(onCheckedChangeListener);
         cb_img.setOnCheckedChangeListener(onCheckedChangeListener);
         cb_movie.setOnCheckedChangeListener(onCheckedChangeListener);
+        listViewCatogries.setAdapter(new CheckedTextViewItemAdapter(this));
+        listViewCatogries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Category tempCategory = Categories.getInstance().getCategoryFromPosition(i);
 
+                if (!selectedCategories.contains(tempCategory)) {
+                    selectedCategories.add(Categories.getInstance().getCategoryFromPosition(i));
+                    view.setBackgroundColor(Color.parseColor(tempCategory.getBackgroundcolor()));
+                }
+                Log.d("selectedCategories", "onItemClick: selected "+ i+" to array"+selectedCategories.size());
+            }
+
+        });
+        listViewCatogries.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Category tempCategory = Categories.getInstance().getCategoryFromPosition(i);
+                if (selectedCategories.contains(tempCategory)) {
+                    view.setBackgroundColor(Color.TRANSPARENT);
+                    selectedCategories.remove(Categories.getInstance().getCategoryFromPosition(i));
+                    Log.d("selectedCategories", "onItemClick: removed " + i + " to array" + selectedCategories.size());
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
 
     }
 }

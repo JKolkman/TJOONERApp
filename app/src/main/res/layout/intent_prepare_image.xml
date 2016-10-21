@@ -12,7 +12,7 @@
         <ImageView
             android:id="@+id/iv_prepare_image"
             android:layout_width="wrap_content"
-            android:layout_height="300sp" />
+            android:layout_height="200sp" />
 
         <TextView
             android:id="@+id/tv_prepare_title"
@@ -140,13 +140,21 @@
             android:textSize="@dimen/textSizeSmaller"
             android:layout_toEndOf="@id/cb_checkImage"
             android:layout_alignBaseline="@id/cb_checkImage"/>
-        <Button
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="140sp"
+            android:id="@+id/lv_categories"
             android:layout_below="@id/cb_checkVideo"
+          />
+        <Button
+            android:layout_below="@id/lv_categories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="15sp"
             android:text="@string/send_image"
             android:textColor="@color/textWhite"
             android:background="@color/button"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_send"
             />
     </RelativeLayout>
 

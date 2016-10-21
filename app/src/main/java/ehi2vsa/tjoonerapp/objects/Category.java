@@ -35,4 +35,8 @@ public class Category implements Serializable{
     public ArrayList<Media> getMedia() {
         return media;
     }
+
+    public String getId() {
+        return id;
+    }
 }
