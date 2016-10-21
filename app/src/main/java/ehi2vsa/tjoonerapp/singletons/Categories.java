@@ -1,6 +1,5 @@
 package ehi2vsa.tjoonerapp.singletons;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import ehi2vsa.tjoonerapp.objects.Category;
@@ -27,5 +26,8 @@ public class Categories {
 
     public ArrayList<Category> getCategories(){
         return categories;
+    }
+    public Category getCategoryFromPosition(int position){
+        return categories.get(position);
     }
 }
