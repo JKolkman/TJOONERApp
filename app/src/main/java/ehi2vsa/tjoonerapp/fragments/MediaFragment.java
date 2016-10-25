@@ -36,6 +36,7 @@ public class MediaFragment extends Fragment {
         gridview = (GridView) view.findViewById(R.id.gv_media_fragment);
         if (firsttime) {
             loadItems();
+            firsttime = false;
         }
         adapter = new CategoryAdapter(Categories.getInstance().getCategories(), getActivity());
         gridview.setAdapter(adapter);
@@ -65,6 +66,5 @@ public class MediaFragment extends Fragment {
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
-        firsttime = false;
     }
 }

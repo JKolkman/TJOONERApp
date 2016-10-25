@@ -56,7 +56,7 @@ public class GetCategories extends AsyncTask<String, String, String> {
                 getImagesFromCategory getImages = new getImagesFromCategory(id);
                 ArrayList<Media>media = getImages.doInBackground();
                 Category category = new Category(media, id, backgroundcolor, description);
-                Categories.getInstance().getCategories().add(category);
+                Categories.getInstance().addCategory(category);
                 Log.d("Amount of pictures", "Category " + i + " has " + category.getMedia().size() + " images");
             }
             Log.d("Size", categories.size() + " categories");

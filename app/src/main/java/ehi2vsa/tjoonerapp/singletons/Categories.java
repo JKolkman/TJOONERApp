@@ -30,4 +30,8 @@ public class Categories {
     public Category getCategoryFromPosition(int position){
         return categories.get(position);
     }
+
+    public void addCategory(Category category){
+        categories.add(category);
+    }
 }

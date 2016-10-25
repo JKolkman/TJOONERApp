@@ -19,11 +19,6 @@ public class Media implements Serializable{
         this.categories = categories;
     }
 
-    @Override
-    public String toString() {
-        return id + "---" + previewId + "---" + resourceId + "---" + description + "---" + author + "---" + mediaType + "---" + preview;
-    }
-
     public String getId() {
         return id;
     }

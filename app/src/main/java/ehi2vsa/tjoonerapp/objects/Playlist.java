@@ -13,10 +13,15 @@ public class Playlist implements Serializable{
     private String title;
     private ArrayList<Media> media;
     private Bitmap preview;
-    public Playlist(String id, String title, ArrayList<Media> media, Bitmap preview) {
+
+
+    public Playlist(String id, String title, ArrayList<Media> media) {
         this.id = id;
         this.title = title;
         this.media = media;
+    }
+
+    public void setPreview(Bitmap preview) {
         this.preview = preview;
     }
 

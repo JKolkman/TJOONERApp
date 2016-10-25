@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.async.GetPlaylist;
+import ehi2vsa.tjoonerapp.async.GetPlaylistThumbnail;
 import ehi2vsa.tjoonerapp.async.PreviewIdToImage;
 import ehi2vsa.tjoonerapp.objects.Playlist;
 import ehi2vsa.tjoonerapp.singletons.PlaylistSingleton;
@@ -74,12 +75,16 @@ public class PlaylistAdapter extends BaseAdapter {
         if (list.getPreview() != null){
             holder.preview.setImageBitmap(list.getPreview());
         } else {
-            try{
-                Bitmap bm = BitmapFactory.decodeResource(convertView.getResources(), R.drawable.image_not_found);
-                holder.preview.setImageBitmap(bm);
-            }catch (Exception e){
-
-            }
+//            try{
+//                GetPlaylistThumbnail getThumb = new GetPlaylistThumbnail();
+//                getThumb.execute(list.getThumbnail());
+//                Bitmap bm = getThumb.get();
+//                list.setPreview(bm);
+//                holder.preview.setImageBitmap(bm);
+//            }catch (Exception e){
+//                Bitmap bm = BitmapFactory.decodeResource(convertView.getResources(), R.drawable.image_not_found);
+//                holder.preview.setImageBitmap(bm);
+//            }
         }
 
         holder.playlist_name.setText(list.getTitle());

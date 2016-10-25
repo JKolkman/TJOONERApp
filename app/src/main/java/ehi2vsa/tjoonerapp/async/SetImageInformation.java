@@ -11,7 +11,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
+import ehi2vsa.tjoonerapp.objects.Category;
 import ehi2vsa.tjoonerapp.singletons.LoginToken;
 
 /**
@@ -19,24 +21,35 @@ import ehi2vsa.tjoonerapp.singletons.LoginToken;
  */
 
 public class SetImageInformation extends AsyncTask<String, String, String> {
-    private String description, date, author, type;
+    private String description, date, author, type, imageId, categoryJSON;
     private boolean authorRights;
-    public SetImageInformation(String description, String date, boolean authorRights, String author, String mediaType) {
+    ArrayList<Category>categories;
+    public SetImageInformation(String imageId, String description, String date, boolean authorRights, String author, String mediaType, ArrayList<Category>categories) {
+        this.imageId = imageId;
         this.description = description;
         this.date = date;
         this.author = author;
         this.authorRights = authorRights;
         this.type = mediaType;
+        this.categories = categories;
+
+        categoryJSON = "[";
+        for (int i = 0; i < categories.size(); i++) {
+            categoryJSON += "\n{\n\"Id: \" " +categories.get(i).getId();
+            categoryJSON += "\n\"BackgroundColor: \"" + categories.get(i).getBackgroundcolor();
+            categoryJSON += "\n\"Description: \"" + categories.get(i).getDescription() + "\n}";
+            if (i != (categories.size() - 1)){
+                categoryJSON += ",";
+            } else {
+                categoryJSON += "\n]";
+            }
+        }
     }
 
     @Override
     protected String doInBackground(String... strings) {
         try {
             URL url2 = new URL("http://setup.tjooner.tv/JCC/Saxion/TJOONER/REST/api/Media?userToken=" + LoginToken.getInstance().getToken());
-
-            String imageId = strings[0];
-            String previewId = strings[1];
-            String resourceId = strings[2];
             HttpURLConnection urlConnection = (HttpURLConnection) url2.openConnection();
             urlConnection.setConnectTimeout(10000);
             urlConnection.setDoOutput(true);
@@ -53,8 +66,8 @@ public class SetImageInformation extends AsyncTask<String, String, String> {
                     "  \"AuthorRights\": \"" + authorRights + "\"\n" +
                     "  \"Author\": \"" + author + "\"\n" +
                     "  \"MediaType\": \"" + type + "\"\n" +
-                    "  \"PreviewId\": \"" + previewId + "\"\n" +
-                    "  \"ResourceId\": \"" + resourceId + "\"\n" +
+                    "  \"PreviewId\": \"" + null + "\"\n" +
+                    "  \"ResourceId\": \"" + null + "\"\n" +
                     "}";
             urlConnection.setRequestProperty("Content-length", req.getBytes().length + "");
             urlConnection.setDoInput(true);

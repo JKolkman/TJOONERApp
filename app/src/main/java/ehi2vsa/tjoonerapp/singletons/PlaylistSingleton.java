@@ -23,6 +23,14 @@ public class PlaylistSingleton {
         list = new ArrayList<Playlist>();
     }
 
+    public void addPlaylist(Playlist playlist){
+        list.add(playlist);
+    }
+
+    public void clearList(){
+        list.clear();
+    }
+
     public ArrayList<Playlist> getList() {
         return list;
     }
