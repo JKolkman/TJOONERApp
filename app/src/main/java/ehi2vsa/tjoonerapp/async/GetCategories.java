@@ -53,7 +53,7 @@ public class GetCategories extends AsyncTask<String, String, String> {
                 id = jsonObject.getString("Id");
                 backgroundcolor = jsonObject.getString("BackgroundColor");
                 description = jsonObject.getString("Description");
-                getImagesFromCategory getImages = new getImagesFromCategory(id);
+                GetImagesFromCategory getImages = new GetImagesFromCategory(id);
                 ArrayList<Media>media = getImages.doInBackground();
                 Category category = new Category(media, id, backgroundcolor, description);
                 Categories.getInstance().addCategory(category);

@@ -13,7 +13,7 @@ import java.net.URL;
  * Created by joost on 18/10/2016.
  */
 
-public class getEmptyGUID extends AsyncTask<String, String, String> {
+public class GetEmptyGUID extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... strings) {
         String id = "";

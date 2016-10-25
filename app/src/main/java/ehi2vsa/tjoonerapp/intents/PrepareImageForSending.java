@@ -3,13 +3,17 @@ package ehi2vsa.tjoonerapp.intents;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -18,9 +22,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.adapters.CheckedTextViewItemAdapter;
+import ehi2vsa.tjoonerapp.async.BitmapToBase64String;
+import ehi2vsa.tjoonerapp.async.GetEmptyGUID;
+import ehi2vsa.tjoonerapp.async.SetImageInformation;
+import ehi2vsa.tjoonerapp.async.UploadImage;
 import ehi2vsa.tjoonerapp.objects.Category;
 import ehi2vsa.tjoonerapp.objects.ImageInfo;
 import ehi2vsa.tjoonerapp.singletons.Categories;
@@ -45,6 +54,7 @@ public class PrepareImageForSending extends AppCompatActivity {
     ImageView iv_image;
     SharedPreferences sharedPref;
     ArrayList<Category> selectedCategories = new ArrayList<>();
+    Button sendImage;
     String ACCESS_TOKEN = "ACCESS_TOKEN";
     String USER = "USER";
     final String PREFS_NAME = "MyPrefsFile";
@@ -68,11 +78,12 @@ public class PrepareImageForSending extends AppCompatActivity {
         cb_img = (CheckBox) findViewById(R.id.cb_checkImage);
         cb_movie = (CheckBox) findViewById(R.id.cb_checkVideo);
         listViewCatogries = (ListView) findViewById(R.id.lv_categories);
+        sendImage = (Button) findViewById(R.id.btn_send);
 
         et_Title.setText(imageInfo.getTitle());
         et_Description.setText(imageInfo.getDescription());
         iv_image.setImageBitmap(BitmapFactory.decodeFile(imageInfo.getLarge_image_path()));
-        Long date_taken = Long.valueOf(imageInfo.getDate_taken());
+        final Long date_taken = Long.valueOf(imageInfo.getDate_taken());
         java.util.Date time = new java.util.Date(date_taken);
         java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(this);
         tv_Date.setText(dateFormat.format(time));
@@ -119,6 +130,43 @@ public class PrepareImageForSending extends AppCompatActivity {
                     return true;
                 } else {
                     return false;
+                }
+            }
+        });
+
+        sendImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    GetEmptyGUID getGUID = new GetEmptyGUID();
+                    getGUID.execute();
+                    String emptyGUID = getGUID.get();
+                    Drawable drawable = iv_image.getDrawable();
+                    Bitmap mutableBitmap = Bitmap.createBitmap(drawable.getMinimumWidth(), drawable.getMinimumHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(mutableBitmap);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    drawable.draw(canvas);
+
+                    BitmapToBase64String imageToString = new BitmapToBase64String(mutableBitmap);
+                    imageToString.execute();
+                    ArrayList<String>base64 = imageToString.get();
+                    UploadImage upload = new UploadImage(base64);
+                    upload.execute(emptyGUID);
+
+                    while(upload.get() == null){
+
+                    }
+
+                    if (cb_yes.isActivated()) {
+                        authorRights = true;
+                    }else{
+                        authorRights = false;
+                    }
+                    SetImageInformation setInfo = new SetImageInformation(emptyGUID, et_Description.getText().toString(), tv_Date.toString(), authorRights, et_Author.getText().toString(), mediaType, selectedCategories);
+                    setInfo.execute();
+                }catch (InterruptedException|ExecutionException e){
+                    Log.d("Upload", e.getMessage());
+
                 }
             }
         });

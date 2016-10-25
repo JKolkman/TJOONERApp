@@ -20,10 +20,10 @@ import ehi2vsa.tjoonerapp.singletons.LoginToken;
 /**
  * Created by joost on 06/10/2016.
  */
-public class getImagesFromCategory extends AsyncTask<String, String, ArrayList<Media>> {
+public class GetImagesFromCategory extends AsyncTask<String, String, ArrayList<Media>> {
     private String categoryID;
 
-    public getImagesFromCategory(String categoryID) {
+    public GetImagesFromCategory(String categoryID) {
         this.categoryID = categoryID;
     }
 
