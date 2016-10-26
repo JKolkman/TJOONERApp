@@ -50,5 +50,36 @@ public class Media implements Serializable{
     public ArrayList<String> getCategories() {
         return categories;
     }
+
+    public String getJSON(){
+        String json = "";
+        String cat = "";
+        String cats = "";
+
+        for (int i = 0; i <categories.size() ; i++) {
+            String[]strings = categories.get(i).split(";");
+            cat += "{\n"+
+                    "\"Id\": \"" + strings[0] + "\"\n" +
+                    "\"BackgroundColor\": \"" + strings[2] + "\"\n" +
+                    "\"Description\": \"" + strings[1] + "\"\n}";
+
+            cats += cat;
+            if (i != categories.size() - 1){
+                cats += ",";
+            }
+        }
+        json += "{\n" +
+                "\"Id\": \"" + id + "\",\n" +
+                "\"Description\": \"" + description + "\",\n" +
+                "\"Categories\": [" +cats + "],\n" +
+                "\"CreationDateTime\": \"2016-10-26T15:28:55.9792797+02:00\",\n" +
+                "\"Author\": \"" + author + "\",\n" +
+                "\"MediaType\": \"image\",\n" +
+                "\"PreviewId\": \"" + previewId + "\",\n" +
+                "\"ResourceId\": \"" + resourceId + "\",\n" +
+                "\"Preview\": \"" + preview + "\"\n}";
+
+        return json;
+    }
 }
 

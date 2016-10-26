@@ -32,7 +32,7 @@ public class BitmapToBase64String extends AsyncTask<String,String, ArrayList<Str
             int counter = 0;
             temp += encoded.charAt(i);
             counter++;
-            if (counter >= 150 || i == encoded.length() - 1){
+            if (counter >= 2000 || i == encoded.length() - 1){
                 base64Strings.add(temp);
                 counter = 0;
                 temp = "";

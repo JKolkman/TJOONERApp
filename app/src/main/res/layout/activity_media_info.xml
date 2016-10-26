@@ -47,7 +47,8 @@
         android:id="@+id/gridView_imageinfo"
         android:numColumns="auto_fit"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView" />
+        android:layout_below="@+id/textView"
+        android:layout_above="@+id/delete_image_button" />
 
     <Button
         android:text="Delete"
@@ -56,5 +57,29 @@
         android:id="@+id/delete_image_button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Add to Playlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_addplaylist"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/delete_image_button" />
+
+    <RelativeLayout
+        android:id="@+id/playlist_layout_id"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:background="@color/border"
+        android:visibility="visible"
+        android:layout_below="@+id/tv_media_info_desc"
+        android:layout_alignStart="@+id/btn_addplaylist"
+        android:layout_marginStart="38dp">
+        <ListView
+            android:id="@+id/lv_playlist_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </ListView>
+    </RelativeLayout>
 
 </RelativeLayout>

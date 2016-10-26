@@ -61,6 +61,8 @@ public class GetImagesFromCategory extends AsyncTask<String, String, ArrayList<M
                 for (int j = 0; j < jArray.length(); j++) {
                     String categoryString2 = "";
                     JSONObject jObject = jArray.getJSONObject(j);
+                    categoryString2 += jObject.getString("Id");
+                    categoryString2 += ";";
                     categoryString2 += jObject.getString("Description");
                     categoryString2 += ";";
                     categoryString2 += jObject.getString("BackgroundColor");

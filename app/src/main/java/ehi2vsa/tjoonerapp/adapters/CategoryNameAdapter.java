@@ -60,8 +60,8 @@ public class CategoryNameAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         String[]strings2 = strings.get(i).split(";");
-        holder.title.setText(strings2[0]);
-        holder.title.setTextColor(Color.parseColor(strings2[1]));
+        holder.title.setText(strings2[1]);
+        holder.title.setTextColor(Color.parseColor(strings2[2]));
         return convertView;
     }
 
