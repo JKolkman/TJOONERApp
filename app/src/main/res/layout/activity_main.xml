@@ -19,7 +19,7 @@
         android:layout_marginTop="75sp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:background="@drawable/tjoonerwhite" />
+        android:src="@drawable/tjoonerwhite" />
 
     <RelativeLayout
         android:layout_width="match_parent"

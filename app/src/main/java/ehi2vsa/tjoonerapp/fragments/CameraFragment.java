@@ -1,18 +1,22 @@
 package ehi2vsa.tjoonerapp.fragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -27,8 +31,9 @@ public class CameraFragment extends Fragment {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
 
+    private String mCurrentPhotoPath, mCurrentURIPath;
+    private Uri photoURI;
     private ImageView ivResult;
-    private String mCurrentPhotoPath;
 
     @Nullable
     @Override
@@ -61,14 +66,9 @@ public class CameraFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            Bundle extras = data.getExtras();
-
-            System.out.println("requestCode: " + requestCode + " resultCode: " + resultCode + " Activity.RESULT_OK: " + Activity.RESULT_OK + " data: " + data);
-
-//          Bitmap imageBitmap = (Bitmap) extras.get("data");
-//          ivResult.setImageBitmap(imageBitmap);
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            Bitmap bitmap = getImageThumbnail(getActivity().getWindowManager());
+            ivResult.setImageBitmap(bitmap);
         }
     }
 
@@ -86,9 +86,10 @@ public class CameraFragment extends Fragment {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                photoURI = FileProvider.getUriForFile(getActivity(),
                         "com.example.android.fileprovider",
                         photoFile);
+
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
@@ -98,16 +99,29 @@ public class CameraFragment extends Fragment {
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+        String imageFileName = "BMP_" + timeStamp + "_";
         File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
+                ".bmp",         /* suffix */
                 storageDir      /* directory */
         );
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentURIPath = image.getAbsolutePath();
         return image;
+    }
+
+    public Bitmap getImageThumbnail(WindowManager windowManager) {
+        Display display = windowManager.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x / 3;
+        int height = size.y / 3;
+
+        return ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(mCurrentURIPath),
+                width, height);
     }
 }
