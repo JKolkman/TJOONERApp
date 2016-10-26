@@ -48,6 +48,7 @@ public class MediaInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_info);
         Intent intent = getIntent();
+        String string = intent.getStringExtra("from");
         media = (Media) intent.getSerializableExtra("Media");
         name = (TextView) findViewById(R.id.tv_media_info_author);
         description = (TextView) findViewById(R.id.tv_media_info_desc);
@@ -56,6 +57,9 @@ public class MediaInfoActivity extends AppCompatActivity {
         adapter = new CategoryNameAdapter(media.getCategories(), this);
         view.setAdapter(adapter);
         addtolist = (Button) findViewById(R.id.btn_addplaylist);
+        if (!string.isEmpty() || string != null){
+            addtolist.setVisibility(View.GONE);
+        }
         lv_playlist = (ListView) findViewById(R.id.lv_playlist_choose);
         pl_layout = (RelativeLayout) findViewById(R.id.playlist_layout_id);
         playlistadapter = new PlaylistPickerAdapter(this);

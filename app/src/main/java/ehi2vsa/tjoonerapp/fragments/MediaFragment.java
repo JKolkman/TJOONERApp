@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import ehi2vsa.tjoonerapp.async.GetPlaylist;
 import ehi2vsa.tjoonerapp.intents.CategoryInfoActivity;
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.adapters.CategoryAdapter;
@@ -38,6 +39,7 @@ public class MediaFragment extends Fragment {
             loadItems();
             firsttime = false;
         }
+        while(Categories.getInstance().getCategories().size() == 0){}
         adapter = new CategoryAdapter(Categories.getInstance().getCategories(), getActivity());
         gridview.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -61,6 +63,8 @@ public class MediaFragment extends Fragment {
         Categories.getInstance().getCategories().clear();
         GetCategories getCategories = new GetCategories();
         getCategories.execute();
+        GetPlaylist getPlaylist = new GetPlaylist();
+        getPlaylist.execute();
         //String toast = "Retrieved " + Categories.getInstance().getCategories().size() + " categories";
         //Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
         if (adapter != null) {

@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import ehi2vsa.tjoonerapp.R;
 import ehi2vsa.tjoonerapp.async.GetAllLocalImagesAsync;
+import ehi2vsa.tjoonerapp.async.GetCategories;
+import ehi2vsa.tjoonerapp.async.GetPlaylist;
 import ehi2vsa.tjoonerapp.async.GlobalAsync;
 import ehi2vsa.tjoonerapp.fragments.CameraFragment;
 import ehi2vsa.tjoonerapp.fragments.GalleryFragment;
@@ -64,6 +66,7 @@ public class LoggedIn extends FragmentActivity implements NavigationView.OnNavig
             if (savedInstanceState != null) {
                 return;
             }
+
 
             media.setArguments(getIntent().getExtras());
             getFragmentManager().beginTransaction().add(R.id.fragment_container, media).commit();
@@ -129,7 +132,6 @@ public class LoggedIn extends FragmentActivity implements NavigationView.OnNavig
                     playlist.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, playlist).commit();
                     break;
-
                 case R.id.nav_gallery:
                     if (firsttimeloadinglocal) {
                         getAllLocalImagesAsync = new GetAllLocalImagesAsync();

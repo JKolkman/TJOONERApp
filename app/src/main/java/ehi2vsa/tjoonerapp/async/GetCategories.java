@@ -60,7 +60,6 @@ public class GetCategories extends AsyncTask<String, String, String> {
                 Log.d("Amount of pictures", "Category " + i + " has " + category.getMedia().size() + " images");
             }
             Log.d("Size", categories.size() + " categories");
-
             return "yay";
         } catch (IOException|JSONException e) {
             Log.d("GetCategoriesConnection", e.getMessage());

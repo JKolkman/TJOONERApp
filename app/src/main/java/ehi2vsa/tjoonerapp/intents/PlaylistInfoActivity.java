@@ -9,8 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import ehi2vsa.tjoonerapp.R;
-import ehi2vsa.tjoonerapp.currently_notused.SinglePlaylistAdapter;
-import ehi2vsa.tjoonerapp.intents.MediaInfoActivity;
+import ehi2vsa.tjoonerapp.adapters.SinglePlaylistAdapter;
 import ehi2vsa.tjoonerapp.objects.Playlist;
 
 /**
@@ -32,6 +31,9 @@ public class PlaylistInfoActivity extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.tv_playlist_info_name);
         id = (TextView) findViewById(R.id.tv_playlist_info_id);
+        name.setText(playlist.getTitle());
+        id.setText(playlist.getMedia().size() + " Images");
+
         images = (ListView) findViewById(R.id.lv_playlist_info);
         adapter = new SinglePlaylistAdapter(playlist.getMedia(), this);
         images.setAdapter(adapter);
@@ -39,7 +41,8 @@ public class PlaylistInfoActivity extends AppCompatActivity {
         images.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                intent2.putExtra("mediaObject", playlist.getMedia().get(i));
+                intent2.putExtra("Media", playlist.getMedia().get(i));
+                intent2.putExtra("from", "playlist");
                 startActivity(intent2);
             }
         });

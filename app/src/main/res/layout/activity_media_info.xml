@@ -71,7 +71,7 @@
         android:layout_width="200sp"
         android:layout_height="200sp"
         android:background="@color/border"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_below="@+id/tv_media_info_desc"
         android:layout_alignStart="@+id/btn_addplaylist"
         android:layout_marginStart="38dp">

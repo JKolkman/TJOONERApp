@@ -1,4 +1,4 @@
-package ehi2vsa.tjoonerapp.currently_notused;
+package ehi2vsa.tjoonerapp.adapters;
 
 import android.app.Activity;
 import android.content.Context;
