@@ -147,11 +147,11 @@ public class LoggedIn extends FragmentActivity implements NavigationView.OnNavig
                     camera.setArguments(getIntent().getExtras());
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, camera).commit();
                     break;
-                case R.id.nav_video:
-                    toolbar.setTitle(R.string.video);
-                    video.setArguments(getIntent().getExtras());
-                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, video).commit();
-                    break;
+//                case R.id.nav_video:
+//                    toolbar.setTitle(R.string.video);
+//                    video.setArguments(getIntent().getExtras());
+//                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, video).commit();
+//                    break;
                 case R.id.nav_logout:
                     sharedPref = this.getSharedPreferences(PREFS_NAME, Context.MODE_MULTI_PROCESS);
                     SharedPreferences.Editor editor = sharedPref.edit();

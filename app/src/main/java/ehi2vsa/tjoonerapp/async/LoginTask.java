@@ -39,7 +39,7 @@ public class LoginTask extends AsyncTask<String, String, String> {
 
             urlConnection.setRequestProperty("Content-type", "application/json");
             urlConnection.setRequestProperty("Accept", "application/json");
-            String req = "{\n \"Username\": \"" + username + "\", \n \"Password\": \"" + password + "\"\n";
+            String req = "{\n \"Username\": \"" + username + "\", \n \"Password\": \"" + password + "\"\n}";
             urlConnection.setRequestProperty("Content-length", req.getBytes().length + "");
             urlConnection.setDoInput(true);
             urlConnection.setUseCaches(false);
