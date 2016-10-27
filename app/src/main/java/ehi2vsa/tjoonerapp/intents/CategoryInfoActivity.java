@@ -35,6 +35,7 @@ public class CategoryInfoActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 newIntent.putExtra("Media", category.getMedia().get(i));
+                newIntent.putExtra("from", "category");
                 startActivityForResult(newIntent, 1);
             }
         });

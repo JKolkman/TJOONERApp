@@ -27,9 +27,11 @@ import ehi2vsa.tjoonerapp.singletons.PlaylistSingleton;
 public class PlaylistAdapter extends BaseAdapter {
     ArrayList<Playlist> items;
     private Activity context;
-    static class ViewHolder{
-        public ViewHolder(){
+
+    static class ViewHolder {
+        public ViewHolder() {
         }
+
         ImageView preview;
         TextView playlist_name, playlist_amount;
     }
@@ -72,20 +74,17 @@ public class PlaylistAdapter extends BaseAdapter {
         }
 
         Playlist list = PlaylistSingleton.getInstance().getList().get(position);
-        if (list.getPreview() != null){
-            holder.preview.setImageBitmap(list.getPreview());
-        } else {
-            try{
-                GetPlaylistThumbnail getThumb = new GetPlaylistThumbnail();
-                getThumb.execute(list.getThumbnail());
-                Bitmap bm = getThumb.get();
-                list.setPreview(bm);
-                holder.preview.setImageBitmap(bm);
-            }catch (Exception e){
-                Bitmap bm = BitmapFactory.decodeResource(convertView.getResources(), R.drawable.image_not_found);
-                holder.preview.setImageBitmap(bm);
-            }
+
+        try {
+            GetPlaylistThumbnail getThumb = new GetPlaylistThumbnail();
+            getThumb.execute(list.getThumbnail());
+            Bitmap bm = getThumb.get();
+            holder.preview.setImageBitmap(bm);
+        } catch (Exception e) {
+            Bitmap bm = BitmapFactory.decodeResource(convertView.getResources(), R.drawable.image_not_found);
+            holder.preview.setImageBitmap(bm);
         }
+
 
         holder.playlist_name.setText(list.getTitle());
         holder.playlist_amount.setText(list.getMedia().size() + " Images");

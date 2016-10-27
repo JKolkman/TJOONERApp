@@ -57,7 +57,7 @@ public class MediaInfoActivity extends AppCompatActivity {
         adapter = new CategoryNameAdapter(media.getCategories(), this);
         view.setAdapter(adapter);
         addtolist = (Button) findViewById(R.id.btn_addplaylist);
-        if (!string.isEmpty() || string != null){
+        if (string.equals("playlist")){
             addtolist.setVisibility(View.GONE);
         }
         lv_playlist = (ListView) findViewById(R.id.lv_playlist_choose);
