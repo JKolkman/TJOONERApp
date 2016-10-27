@@ -42,5 +42,6 @@
     <string name="media_type">Type of media</string>
     <string name="image">Image</string>
     <string name="send_image">send image</string>
+    <string name="preview_image">Preview image</string>
 
 </resources>

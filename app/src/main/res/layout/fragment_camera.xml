@@ -5,25 +5,61 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivResult"
+        android:layout_marginTop="30dp"
+        android:minHeight="200dp"
+        android:minWidth="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/preview_image" />
+
     <TextView
+        android:labelFor="@id/etTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title"
         android:id="@+id/tvTitle"
         android:layout_below="@+id/ivResult"
+        android:layout_marginTop="30dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginStart="30dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:id="@+id/etTitle"
+        android:layout_toEndOf="@+id/tvDescription"
+        android:layout_marginStart="10dp"
+        android:layout_alignBottom="@+id/tvTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp" />
 
     <TextView
+        android:labelFor="@+id/etDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/description"
         android:id="@+id/tvDescription"
         android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="30dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginStart="30dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/etDescription"
+        android:layout_toEndOf="@+id/tvDescription"
+        android:layout_marginStart="10dp"
+        android:layout_alignBottom="@+id/tvDescription"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -36,45 +72,14 @@
         android:layout_marginStart="30dp"
         android:layout_marginBottom="30dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/etDescription"
-        android:layout_alignBottom="@+id/tvDescription"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="30dp"
-        android:layout_toEndOf="@+id/tvDescription" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/etTitle"
-        android:layout_alignBottom="@+id/tvTitle"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp"
-        android:layout_toEndOf="@+id/tvDescription"
-        android:layout_marginStart="10dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ivResult"
-        android:layout_marginTop="30dp"
-        android:minHeight="200dp"
-        android:minWidth="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Camera"
+        android:text="@string/camera"
         android:id="@+id/btnCamera"
-        android:layout_alignBaseline="@+id/btnSave"
-        android:layout_alignBottom="@+id/btnSave"
-        android:layout_alignEnd="@+id/etDescription" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="30dp" />
 </RelativeLayout>
